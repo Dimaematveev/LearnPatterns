@@ -39,10 +39,8 @@ namespace ProjectBilling.UI.MVP
         ProjectUpdated = delegate { };
         public int SelectedProjectId { get; private set; }
 
-        public event EventHandler SelectionChanged
-            = delegate { };
-        public event EventHandler<ProjectEventArgs>
-            DetailsUpdated = delegate { };
+        public event EventHandler SelectionChanged = delegate { };
+        public event EventHandler<ProjectEventArgs> DetailsUpdated = delegate { };
 
         public ProjectsView()
         {
@@ -54,34 +52,22 @@ namespace ProjectBilling.UI.MVP
 
         #region Event handlers
 
-        private void updateButton_Click(object sender,
-            RoutedEventArgs e)
+        private void updateButton_Click(object sender, RoutedEventArgs e)
         {
             Project project = new Project();
             project.Name = nameTextBox.Text;
-            project.Estimate =
-                GetDouble(estimatedTextBox.Text);
-            project.Actual =
-                GetDouble(actualTextBox.Text);
-            project.ID =
-                int.Parse(
-                    projectsComboBox.SelectedValue.
-                        ToString());
-            ProjectUpdated(this,
-                new ProjectEventArgs(project));
+            project.Estimate = GetDouble(estimatedTextBox.Text);
+            project.Actual = GetDouble(actualTextBox.Text);
+            project.ID = int.Parse(projectsComboBox.SelectedValue.ToString());
+            ProjectUpdated(this, new ProjectEventArgs(project));
         }
 
-        private void projectsComboBox_SelectionChanged(
-            object sender, SelectionChangedEventArgs e)
+        private void projectsComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            SelectedProjectId
-                = (projectsComboBox.SelectedValue == null)
-                      ? NONE_SELECTED
-                      : int.Parse(
-                          projectsComboBox.SelectedValue.
-                              ToString());
-            SelectionChanged(this,
-                new EventArgs());
+            SelectedProjectId= (projectsComboBox.SelectedValue == null)
+                                ? NONE_SELECTED
+                                : int.Parse(projectsComboBox.SelectedValue.ToString());
+            SelectionChanged(this,new EventArgs());
         }
 
         #endregion Event handlers
@@ -90,12 +76,8 @@ namespace ProjectBilling.UI.MVP
 
         public void UpdateProject(Project project)
         {
-            IEnumerable<Project> projects =
-                projectsComboBox.ItemsSource as
-                    IEnumerable<Project>;
-            Project projectToUpdate =
-                projects.Where(p => p.ID == project.ID)
-                    .First() as Project;
+            IEnumerable<Project> projects = projectsComboBox.ItemsSource as IEnumerable<Project>;
+            Project projectToUpdate = projects.Where(p => p.ID == project.ID).First() as Project;
             projectToUpdate.Name = project.Name;
             projectToUpdate.Estimate = project.Estimate;
             projectToUpdate.Actual = project.Actual;
@@ -119,21 +101,15 @@ namespace ProjectBilling.UI.MVP
 
         public void SetEstimatedColor(Color? color)
         {
-            estimatedTextBox.Foreground
-                = (color == null)
-                      ? actualTextBox.Foreground
-                      : new SolidColorBrush((Color)color);
+            estimatedTextBox.Foreground = (color == null) ? actualTextBox.Foreground : new SolidColorBrush((Color)color);
         }
 
         public void UpdateDetails(Project project)
         {
             nameTextBox.Text = project.Name;
-            estimatedTextBox.Text
-                = project.Estimate.ToString();
-            actualTextBox.Text
-                = project.Actual.ToString();
-            DetailsUpdated(this,
-                new ProjectEventArgs(project));
+            estimatedTextBox.Text = project.Estimate.ToString();
+            actualTextBox.Text = project.Actual.ToString();
+            DetailsUpdated(this, new ProjectEventArgs(project));
         }
 
         #endregion Public methods
@@ -142,8 +118,7 @@ namespace ProjectBilling.UI.MVP
 
         private double GetDouble(string text)
         {
-            return string.IsNullOrEmpty(text)
-                ? 0 : double.Parse(text);
+            return string.IsNullOrEmpty(text) ? 0 : double.Parse(text);
         }
 
         #endregion Helpers

@@ -8,7 +8,7 @@ namespace ProjectBilling.UI.MVP
     public class ProjectsPresenter
     {
         #region Initialization
-
+        
         private IProjectsView view = null;
         private IProjectsModel model = null;
 

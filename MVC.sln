@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectBilling.MVC", "Proje
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectBilling.MVP", "ProjectBilling.MVP\ProjectBilling.MVP.csproj", "{0930637C-DBC4-45B0-8B2D-1E383B8E3681}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectBilling.MVVM", "ProjectBilling.MVVM\ProjectBilling.MVVM.csproj", "{93BB8508-3E2D-4319-9B9E-5E71C21C241B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{0930637C-DBC4-45B0-8B2D-1E383B8E3681}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0930637C-DBC4-45B0-8B2D-1E383B8E3681}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0930637C-DBC4-45B0-8B2D-1E383B8E3681}.Release|Any CPU.Build.0 = Release|Any CPU
+		{93BB8508-3E2D-4319-9B9E-5E71C21C241B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93BB8508-3E2D-4319-9B9E-5E71C21C241B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93BB8508-3E2D-4319-9B9E-5E71C21C241B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{93BB8508-3E2D-4319-9B9E-5E71C21C241B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
