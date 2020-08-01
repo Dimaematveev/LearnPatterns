@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectBilling.MVP", "Proje
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectBilling.MVVM", "ProjectBilling.MVVM\ProjectBilling.MVVM.csproj", "{93BB8508-3E2D-4319-9B9E-5E71C21C241B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQLiteApp", "SQLiteApp\SQLiteApp.csproj", "{B1F79797-3371-4061-A32C-42F40D1C48E3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{93BB8508-3E2D-4319-9B9E-5E71C21C241B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{93BB8508-3E2D-4319-9B9E-5E71C21C241B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{93BB8508-3E2D-4319-9B9E-5E71C21C241B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1F79797-3371-4061-A32C-42F40D1C48E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1F79797-3371-4061-A32C-42F40D1C48E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1F79797-3371-4061-A32C-42F40D1C48E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1F79797-3371-4061-A32C-42F40D1C48E3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
