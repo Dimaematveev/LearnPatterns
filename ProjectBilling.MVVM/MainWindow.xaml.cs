@@ -7,7 +7,7 @@ namespace MVVM
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new ApplicationViewModel();
+            DataContext = new ApplicationViewModel(new DefaultDialogService(), new SoapFileService());
         }
     }
 }

@@ -1,24 +1,30 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
 namespace MVVM
 {
+    [Serializable]
+    public class Phone
+    {
+        public string Title;
+        public string Company;
+        public int Price;
+    }
     public class PhoneViewModel : INotifyPropertyChanged
     {
-        private Phone Phone;
-
-        public PhoneViewModel(Phone p)
+        public Phone Phone { get; }
+        public PhoneViewModel(Phone phone)
         {
-            Phone = p;
+            Phone = phone;
         }
-
         public string Title
         {
             get { return Phone.Title; }
             set
             {
                 Phone.Title = value;
-                OnPropertyChanged("Title");
+                OnPropertyChanged(nameof(Title));
             }
         }
         public string Company
@@ -27,7 +33,7 @@ namespace MVVM
             set
             {
                 Phone.Company = value;
-                OnPropertyChanged("Company");
+                OnPropertyChanged(nameof(Company));
             }
         }
         public int Price
@@ -36,15 +42,14 @@ namespace MVVM
             set
             {
                 Phone.Price = value;
-                OnPropertyChanged("Price");
+                OnPropertyChanged(nameof(Price));
             }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged(string prop)
         {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
         }
     }
 }
