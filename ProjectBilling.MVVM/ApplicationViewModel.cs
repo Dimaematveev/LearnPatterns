@@ -8,12 +8,41 @@ namespace MVVM
 {
     public class ApplicationViewModel : INotifyPropertyChanged
     {
+        /// <summary>
+        /// Выбранный объект
+        /// </summary>
         PhoneViewModel selectedPhone;
 
+        /// <summary>
+        /// Интерфейс работы с файлами
+        /// </summary>
         IFileService fileService;
+
+        /// <summary>
+        /// Интерфейс работы с диалоговыми окнами.
+        /// </summary>
         IDialogService dialogService;
 
-        public ObservableCollection<PhoneViewModel> Phones { get; set; }
+        /// <summary>
+        /// Коллекция Телефонов
+        /// </summary>
+        public ObservableCollection<PhoneViewModel> PhoneViewModels { get; set; }
+
+
+        public ApplicationViewModel(IDialogService dialogService, IFileService fileService)
+        {
+            this.dialogService = dialogService;
+            this.fileService = fileService;
+
+            // данные по умлолчанию
+            PhoneViewModels = new ObservableCollection<PhoneViewModel>
+            {
+                new PhoneViewModel(new Phone() {Title="iPhone 7", Company="Apple", Price=56000 }),
+                new PhoneViewModel(new Phone()  {Title="Galaxy S7 Edge", Company="Samsung", Price =60000 }),
+                new PhoneViewModel(new Phone()  {Title="Elite x3", Company="HP", Price=56000 }),
+                new PhoneViewModel (new Phone() {Title="Mi5S", Company="Xiaomi", Price=35000 })
+            };
+        }
 
         // команда сохранения файла
         private RelayCommand saveCommand;
@@ -28,7 +57,7 @@ namespace MVVM
                     {
                         if (dialogService.SaveFileDialog() == true)
                         {
-                            fileService.Save(dialogService.FilePath, Phones.ToList());
+                            fileService.Save(dialogService.FilePath, PhoneViewModels.ToList());
                             dialogService.ShowMessage("Файл сохранен");
                         }
                     }
@@ -54,9 +83,9 @@ namespace MVVM
                         if (dialogService.OpenFileDialog() == true)
                         {
                             var phones = fileService.Open(dialogService.FilePath);
-                            Phones.Clear();
+                            PhoneViewModels.Clear();
                             foreach (var p in phones)
-                                Phones.Add(p);
+                                PhoneViewModels.Add(p);
                             dialogService.ShowMessage("Файл открыт");
                         }
                     }
@@ -74,18 +103,15 @@ namespace MVVM
         {
             get
             {
-                return addCommand ??
-                (addCommand = new RelayCommand(obj =>
+                return addCommand ?? (addCommand = new RelayCommand(obj =>
                 {
-
                     Phone phone = new Phone();
                     PhoneViewModel phoneViewModel = new PhoneViewModel(phone);
-                    Phones.Insert(0, phoneViewModel);
+                    PhoneViewModels.Insert(0, phoneViewModel);
                     SelectedPhone = phoneViewModel;
                 }));
             }
         }
-
         private RelayCommand removeCommand;
         public RelayCommand RemoveCommand
         {
@@ -97,10 +123,10 @@ namespace MVVM
                     PhoneViewModel phone = obj as PhoneViewModel;
                     if (phone != null)
                     {
-                        Phones.Remove(phone);
+                        PhoneViewModels.Remove(phone);
                     }
                 },
-                (obj) => Phones.Count > 0));
+                (obj) => PhoneViewModels.Count > 0));
             }
         }
         private RelayCommand doubleCommand;
@@ -121,7 +147,7 @@ namespace MVVM
                             Title = phoneViewModel.Title
                         };
                         PhoneViewModel phoneViewModelCopy = new PhoneViewModel(phone);
-                        Phones.Insert(0, phoneViewModelCopy);
+                        PhoneViewModels.Insert(0, phoneViewModelCopy);
                     }
                 }));
             }
@@ -137,26 +163,12 @@ namespace MVVM
             }
         }
 
-        public ApplicationViewModel(IDialogService dialogService, IFileService fileService)
-        {
-            this.dialogService = dialogService;
-            this.fileService = fileService;
-
-            // данные по умлолчанию
-            Phones = new ObservableCollection<PhoneViewModel>
-            {
-                new PhoneViewModel(new Phone() {Title="iPhone 7", Company="Apple", Price=56000 }),
-                new PhoneViewModel(new Phone()  {Title="Galaxy S7 Edge", Company="Samsung", Price =60000 }),
-                new PhoneViewModel(new Phone()  {Title="Elite x3", Company="HP", Price=56000 }),
-                new PhoneViewModel (new Phone() {Title="Mi5S", Company="Xiaomi", Price=35000 })
-            };
-        }
+       
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged(string prop)
         {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
         }
     }
 }

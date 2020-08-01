@@ -3,10 +3,20 @@ using System.Windows;
 
 namespace MVVM
 {
+    /// <summary>
+    /// Стандартный класс работы с диалоговыми окнами.
+    /// </summary>
     public class DefaultDialogService : IDialogService
     {
+        /// <summary>
+        /// Путь до файла.
+        /// </summary>
         public string FilePath { get; set; }
 
+        /// <summary>
+        /// Открыть файл в диалоговом окне.
+        /// </summary>
+        /// <returns> true/false успешное открытие или нет.</returns>
         public bool OpenFileDialog()
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -17,7 +27,10 @@ namespace MVVM
             }
             return false;
         }
-
+        /// <summary>
+        /// Сохранить файл в диалоговом окне.
+        /// </summary>
+        /// <returns> true/false успешное сохранение или нет.</returns>
         public bool SaveFileDialog()
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
@@ -28,7 +41,10 @@ namespace MVVM
             }
             return false;
         }
-
+        /// <summary>
+        /// Показать сообщение.
+        /// </summary>
+        /// <param name="message"> Сообщение для вывода.</param>
         public void ShowMessage(string message)
         {
             MessageBox.Show(message);

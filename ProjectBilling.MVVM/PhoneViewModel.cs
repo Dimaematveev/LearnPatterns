@@ -1,16 +1,8 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
 namespace MVVM
 {
-    [Serializable]
-    public class Phone
-    {
-        public string Title;
-        public string Company;
-        public int Price;
-    }
     public class PhoneViewModel : INotifyPropertyChanged
     {
         public Phone Phone { get; }

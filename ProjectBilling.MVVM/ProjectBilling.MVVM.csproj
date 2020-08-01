@@ -51,10 +51,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Phone.cs" />
     <Compile Include="SoapFileService.cs" />
     <Compile Include="DefaultDialogService.cs" />
-    <Compile Include="IDialogService.cs" />
-    <Compile Include="IFileService.cs" />
+    <Compile Include="Interfaces\IDialogService.cs" />
+    <Compile Include="Interfaces\IFileService.cs" />
     <Compile Include="RelayCommand.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
