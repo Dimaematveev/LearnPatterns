@@ -63,11 +63,32 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="EditAdd\LocationWindows.xaml.cs">
+      <DependentUpon>LocationWindows.xaml</DependentUpon>
+    </Compile>
     <Compile Include="EditAdd\ModelWindows.xaml.cs">
       <DependentUpon>ModelWindows.xaml</DependentUpon>
     </Compile>
+    <Compile Include="EditAdd\Sp_SiWindows.xaml.cs">
+      <DependentUpon>Sp_SiWindows.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditAdd\TypeWindows.xaml.cs">
+      <DependentUpon>TypeWindows.xaml</DependentUpon>
+    </Compile>
     <Compile Include="RelayCommand.cs" />
+    <Page Include="EditAdd\LocationWindows.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="EditAdd\ModelWindows.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditAdd\Sp_SiWindows.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditAdd\TypeWindows.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

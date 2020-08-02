@@ -7,7 +7,7 @@ namespace DataBase.BL
     using System.Data.Entity.Spatial;
 
     [Table("dic.Device_Location")]
-    public partial class DeviceLocation : NotifyPropertyChanged_Default
+    public partial class Dic_DeviceLocation : NotifyPropertyChanged_Default
     {
         private int _ID;
         private string _Name;

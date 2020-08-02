@@ -27,7 +27,8 @@
         <TextBlock Text="Тип" />
         <TextBlock Text="Модель" Grid.Row="1" />
 
-        <TextBox Text="{Binding TypeDeviceID}" Grid.Column="1" />
+
+        <TextBox Text="{Binding DeviceTypeID}" Grid.Column="1" />
         <TextBox Text="{Binding Name}" Grid.Column="1" Grid.Row="1" />
 
         <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Grid.Row="3" Grid.Column="1">

@@ -61,13 +61,17 @@
     <Compile Include="Migrations\202008021413351_Rename_Tables.designer.cs">
       <DependentUpon>202008021413351_Rename_Tables.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202008021452011_Rename_NameClass.cs" />
+    <Compile Include="Migrations\202008021452011_Rename_NameClass.designer.cs">
+      <DependentUpon>202008021452011_Rename_NameClass.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Model\DeviceLocation.cs" />
-    <Compile Include="Model\DeviceModel.cs" />
+    <Compile Include="Model\Dic_DeviceLocation.cs" />
+    <Compile Include="Model\Dic_DeviceModel.cs" />
     <Compile Include="NotifyPropertyChanged_Default.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Model\DeviceSp_Si.cs" />
-    <Compile Include="Model\DeviceType.cs" />
+    <Compile Include="Model\Dic_DeviceSp_Si.cs" />
+    <Compile Include="Model\Dic_DeviceType.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -79,6 +83,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202008021413351_Rename_Tables.resx">
       <DependentUpon>202008021413351_Rename_Tables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008021452011_Rename_NameClass.resx">
+      <DependentUpon>202008021452011_Rename_NameClass.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

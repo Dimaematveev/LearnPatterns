@@ -1,0 +1,42 @@
+﻿<Window x:Class="Dictionary.WPF.EditAdd.TypeWindows"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Dictionary.WPF.EditAdd"
+        mc:Ignorable="d"
+        Title="DictionaryType" MinHeight="120" Height="120" MaxHeight="120" MinWidth="300" Width="300" ResizeMode="CanResize">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <StackPanel x:Name="MainStackPanel" VerticalAlignment="Center" Orientation="Vertical" Margin="10,0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Label Content="_Имя таблицы" Grid.Column="0"/>
+                <ComboBox x:Name="GadgetName" Grid.Column="1"/>
+            </Grid>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Label Content="_Тип устройства" Grid.Column="0"/>
+                <TextBox x:Name="TypeName" Grid.Column="1"/>
+            </Grid>
+            
+        </StackPanel>
+        <Grid Grid.Row="1" HorizontalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="70"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="OK" Content="OK" Grid.Column="0"/>
+            <Button x:Name="Cancel" Content="Отмена" Grid.Column="1"/>
+        </Grid>
+    </Grid>
+</Window>

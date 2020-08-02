@@ -7,13 +7,13 @@ namespace DataBase.BL
     using System.Data.Entity.Spatial;
 
     [Table("dic.Device_Model")]
-    public partial class DeviceModel : NotifyPropertyChanged_Default
+    public partial class Dic_DeviceModel : NotifyPropertyChanged_Default
     {
         private int _ID;
         private string _Name;
         private int _DeviceTypeID;
         private bool _IsDelete;
-        private DeviceType _DeviceType;
+        private Dic_DeviceType _DeviceType;
         public int ID 
         { 
             get { return _ID; } 
@@ -51,7 +51,7 @@ namespace DataBase.BL
             }
         }
 
-        public virtual DeviceType DeviceType
+        public virtual Dic_DeviceType DeviceType
         {
             get { return _DeviceType; }
             set

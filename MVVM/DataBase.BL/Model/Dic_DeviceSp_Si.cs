@@ -7,7 +7,7 @@ namespace DataBase.BL
     using System.Data.Entity.Spatial;
 
     [Table("dic.Device_Sp_Si")]
-    public partial class DeviceSp_Si : NotifyPropertyChanged_Default
+    public partial class Dic_DeviceSp_Si : NotifyPropertyChanged_Default
     {
         private int _ID;
         private string _RegisterNumber;

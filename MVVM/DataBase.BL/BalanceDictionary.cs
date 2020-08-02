@@ -12,14 +12,14 @@ namespace DataBase.BL
         {
         }
 
-        public virtual DbSet<DeviceLocation> Locations { get; set; }
-        public virtual DbSet<DeviceModel> Models { get; set; }
-        public virtual DbSet<DeviceSp_Si> Sp_Si { get; set; }
-        public virtual DbSet<DeviceType> Types { get; set; }
+        public virtual DbSet<Dic_DeviceLocation> DeviceLocations { get; set; }
+        public virtual DbSet<Dic_DeviceModel> DeviceModels { get; set; }
+        public virtual DbSet<Dic_DeviceSp_Si> DeviceSp_Si { get; set; }
+        public virtual DbSet<Dic_DeviceType> DeviceTypes { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<DeviceType>()
+            modelBuilder.Entity<Dic_DeviceType>()
                 .HasMany(e => e.DeviceModels)
                 .WithRequired(e => e.DeviceType)
                 .WillCascadeOnDelete(false);

@@ -7,18 +7,18 @@ namespace DataBase.BL
     using System.Data.Entity.Spatial;
 
     [Table("dic.Device_Type")]
-    public partial class DeviceType : NotifyPropertyChanged_Default
+    public partial class Dic_DeviceType : NotifyPropertyChanged_Default
     {
         private int _ID;
         private string _Name;
         private string _GadgetName;
         private bool _IsDelete;
-        private ICollection<DeviceModel> _DeviceModels;
+        private ICollection<Dic_DeviceModel> _DeviceModels;
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public DeviceType()
+        public Dic_DeviceType()
         {
-            DeviceModels = new HashSet<DeviceModel>();
+            DeviceModels = new HashSet<Dic_DeviceModel>();
         }
 
         public int ID
@@ -62,7 +62,7 @@ namespace DataBase.BL
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DeviceModel> DeviceModels
+        public virtual ICollection<Dic_DeviceModel> DeviceModels
         {
             get { return _DeviceModels; }
             set

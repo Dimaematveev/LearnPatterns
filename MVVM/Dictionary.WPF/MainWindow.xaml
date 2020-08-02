@@ -11,18 +11,29 @@
             <RowDefinition />
             <RowDefinition Height="50" />
         </Grid.RowDefinitions>
-        <ListBox x:Name="modelsList" ItemsSource="{Binding ModelDevices}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <TreeView Grid.Column="0" Grid.Row="0">
+            <TreeViewItem Header="Словари" x:Name="Dictionarys" IsExpanded="True">
+                <TreeViewItem Header="Типы устройств" x:Name="TreeType"/>
+                <TreeViewItem Header="Модели устройств" x:Name="TreeModel"/>
+                <TreeViewItem Header="Местоположение" x:Name="TreeLocation"/>
+                <TreeViewItem Header="СП и СИ" x:Name="TreeSp_Si"/>
+            </TreeViewItem>
+        </TreeView>
+        <ListBox Grid.Column="1" x:Name="modelsList" ItemsSource="{Binding ModelDevices}" Visibility="Visible">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
-                        <TextBlock Text="{Binding TypeDeviceID}" FontSize="16" />
-                        <TextBlock Text="{Binding TypeDeviceName}" FontSize="12" />
-                        <TextBlock Text="{Binding Name}" FontSize="13" />
+                        <TextBlock Text="{Binding Name}" FontSize="16" />
+                        <TextBlock Text="{Binding DeviceType.Name}" FontSize="13" />
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+        <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center">
             <Button Content="Добавить" Margin="10" Command="{Binding AddCommand}"  />
             <Button Content="Изменить" Margin="10" Command="{Binding EditCommand}" 
                 CommandParameter="{Binding ElementName=modelsList, Path=SelectedItem}"  />

@@ -8,8 +8,8 @@ namespace Dictionary.WPF.EditAdd
     /// </summary>
     public partial class ModelWindows : Window
     {
-        public readonly ModelDevice ModelDevice;
-        public ModelWindows(ModelDevice modelDevice)
+        public readonly Dic_DeviceModel ModelDevice;
+        public ModelWindows(Dic_DeviceModel modelDevice)
         {
             InitializeComponent();
             this.ModelDevice = modelDevice;

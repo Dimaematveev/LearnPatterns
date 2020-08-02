@@ -10,11 +10,9 @@ namespace Dictionary.WPF
 {
     public class ApplicationViewModel : INotifyPropertyChanged
     {
-        private readonly ModelDictionary db;
+        private readonly BalanceDictionary db;
         RelayCommand addCommand;
-        RelayCommand editCommand;
-        private IEnumerable<ModelDevice>  modelDevices;
-        private IEnumerable<TypeDevice>  typeDevices;
+        private IEnumerable<Dic_DeviceModel>  modelDevices;
 
         // команда добавления
         public RelayCommand AddCommand
@@ -24,55 +22,19 @@ namespace Dictionary.WPF
                 return addCommand ??
                   (addCommand = new RelayCommand((o) =>
                   {
-                      ModelWindows modelWindows = new ModelWindows(new ModelDevice());
+                      ModelWindows modelWindows = new ModelWindows(new Dic_DeviceModel());
                       if (modelWindows.ShowDialog() == true)
                       {
-                          ModelDevice modelView = modelWindows.ModelDevice;
+                          Dic_DeviceModel deviceModel = modelWindows.ModelDevice;
                          
-                          db.ModelDevices.Add(modelView);
+                          db.DeviceModels.Add(deviceModel);
                           db.SaveChanges();
                       }
                   }));
             }
         }
-        // команда редактирования
-        public RelayCommand EditCommand
-        {
-            get
-            {
-                return editCommand ??
-                  (editCommand = new RelayCommand((selectedItem) =>
-                  {
-                      if (selectedItem == null) return;
-                      // получаем выделенный объект
-                      ModelDevice modelDevices = selectedItem as ModelDevice;
-
-                      ModelDevice vm = new ModelDevice()
-                      {
-                          ID = modelDevices.ID,
-                          TypeDeviceID = modelDevices.TypeDeviceID,
-                          Name = modelDevices.Name
-                      };
-                      //ModelView temp = new ModelView(vm);
-                      ModelWindows modelWindows = new ModelWindows(vm);
-
-
-                      if (modelWindows.ShowDialog() == true)
-                      {
-                          // получаем измененный объект
-                          vm = db.ModelDevices.Find(modelWindows.ModelDevice.ID);
-                          if (modelDevices != null)
-                          {
-                              modelDevices.TypeDeviceID = modelWindows.ModelDevice.TypeDeviceID;
-                              modelDevices.Name = modelWindows.ModelDevice.Name;
-                              db.Entry(modelDevices).State = EntityState.Modified;
-                              db.SaveChanges();
-                          }
-                      }
-                  }));
-            }
-        }
-        public IEnumerable<ModelDevice> ModelDevices
+        
+        public IEnumerable<Dic_DeviceModel> ModelDevices
         {
             get { return modelDevices; }
             set
@@ -81,22 +43,12 @@ namespace Dictionary.WPF
                 OnPropertyChanged(nameof(ModelDevices));
             }
         }
-        public IEnumerable<TypeDevice> TypeDevices
-        {
-            get { return typeDevices; }
-            set
-            {
-                typeDevices = value;
-                OnPropertyChanged(nameof(TypeDevices));
-            }
-        }
         public ApplicationViewModel()
         {
-            db = new ModelDictionary();
-            db.ModelDevices.Load();
-            ModelDevices = db.ModelDevices.Local.ToBindingList();
-            db.TypeDevices.Load();
-            TypeDevices = db.TypeDevices.Local.ToBindingList();
+            db = new BalanceDictionary();
+            db.DeviceModels.Load();
+            ModelDevices = db.DeviceModels.Local.ToBindingList();
+           
         }
        
         public event PropertyChangedEventHandler PropertyChanged;
