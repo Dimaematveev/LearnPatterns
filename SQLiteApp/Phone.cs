@@ -17,7 +17,7 @@ namespace SQLiteApp
             set
             {
                 title = value;
-                OnPropertyChanged("Title");
+                OnPropertyChanged(nameof(Title));
             }
         }
         public string Company
@@ -26,7 +26,7 @@ namespace SQLiteApp
             set
             {
                 company = value;
-                OnPropertyChanged("Company");
+                OnPropertyChanged(nameof(Company));
             }
         }
         public int Price
@@ -35,12 +35,12 @@ namespace SQLiteApp
             set
             {
                 price = value;
-                OnPropertyChanged("Price");
+                OnPropertyChanged(nameof(Price));
             }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged([CallerMemberName] string prop = "")
+        public void OnPropertyChanged(string prop)
         {
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
