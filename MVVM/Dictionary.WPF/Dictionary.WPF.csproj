@@ -115,10 +115,6 @@
       <Project>{fa55f680-1bc6-46de-b671-b98a5f9772fd}</Project>
       <Name>DataBase.BL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ModelView.BL\ViewModel.BL.csproj">
-      <Project>{3359ed33-c407-4ed0-a258-2515c008a2c6}</Project>
-      <Name>ViewModel.BL</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

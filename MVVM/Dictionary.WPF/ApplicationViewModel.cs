@@ -1,9 +1,10 @@
 ﻿using DataBase.BL;
+using Dictionary.WPF.EditAdd;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data.Entity;
 using System.Linq;
-using ViewModel.BL;
 
 namespace Dictionary.WPF
 {
@@ -11,8 +12,9 @@ namespace Dictionary.WPF
     {
         private readonly ModelDictionary db;
         RelayCommand addCommand;
-        private IEnumerable<ModelView> modelViews;
-        private IEnumerable<TypeView> typeViews;
+        RelayCommand editCommand;
+        private IEnumerable<ModelDevice>  modelDevices;
+        private IEnumerable<TypeDevice>  typeDevices;
 
         // команда добавления
         public RelayCommand AddCommand
@@ -22,43 +24,81 @@ namespace Dictionary.WPF
                 return addCommand ??
                   (addCommand = new RelayCommand((o) =>
                   {
-                      EditAdd.ModelWindows modelWindows = new EditAdd.ModelWindows(new ModelView(new ModelDevice()));
+                      ModelWindows modelWindows = new ModelWindows(new ModelDevice());
                       if (modelWindows.ShowDialog() == true)
                       {
-                          ModelView modelView = modelWindows.ModelView;
-                          db.ModelDevices.Add(modelView.GetModelDevice());
+                          ModelDevice modelView = modelWindows.ModelDevice;
+                         
+                          db.ModelDevices.Add(modelView);
                           db.SaveChanges();
                       }
                   }));
             }
         }
-
-        public IEnumerable<ModelView> ModelViews
+        // команда редактирования
+        public RelayCommand EditCommand
         {
-            get { return modelViews; }
-            set
+            get
             {
-                modelViews = value;
-                OnPropertyChanged(nameof(ModelViews));
+                return editCommand ??
+                  (editCommand = new RelayCommand((selectedItem) =>
+                  {
+                      if (selectedItem == null) return;
+                      // получаем выделенный объект
+                      ModelDevice modelDevices = selectedItem as ModelDevice;
+
+                      ModelDevice vm = new ModelDevice()
+                      {
+                          ID = modelDevices.ID,
+                          TypeDeviceID = modelDevices.TypeDeviceID,
+                          Name = modelDevices.Name
+                      };
+                      //ModelView temp = new ModelView(vm);
+                      ModelWindows modelWindows = new ModelWindows(vm);
+
+
+                      if (modelWindows.ShowDialog() == true)
+                      {
+                          // получаем измененный объект
+                          vm = db.ModelDevices.Find(modelWindows.ModelDevice.ID);
+                          if (modelDevices != null)
+                          {
+                              modelDevices.TypeDeviceID = modelWindows.ModelDevice.TypeDeviceID;
+                              modelDevices.Name = modelWindows.ModelDevice.Name;
+                              db.Entry(modelDevices).State = EntityState.Modified;
+                              db.SaveChanges();
+                          }
+                      }
+                  }));
             }
         }
-        public IEnumerable<TypeView> TypeViews
+        public IEnumerable<ModelDevice> ModelDevices
         {
-            get { return typeViews; }
+            get { return modelDevices; }
             set
             {
-                typeViews = value;
-                OnPropertyChanged(nameof(TypeViews));
+                modelDevices = value;
+                OnPropertyChanged(nameof(ModelDevices));
+            }
+        }
+        public IEnumerable<TypeDevice> TypeDevices
+        {
+            get { return typeDevices; }
+            set
+            {
+                typeDevices = value;
+                OnPropertyChanged(nameof(TypeDevices));
             }
         }
         public ApplicationViewModel()
         {
             db = new ModelDictionary();
             db.ModelDevices.Load();
-            ModelViews = db.ModelDevices.Local.Select(x => new ModelView(x)).ToList();
+            ModelDevices = db.ModelDevices.Local.ToBindingList();
             db.TypeDevices.Load();
-            TypeViews = db.TypeDevices.Local.Select(x => new TypeView(x)).ToList();
+            TypeDevices = db.TypeDevices.Local.ToBindingList();
         }
+       
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged(string prop)
         {

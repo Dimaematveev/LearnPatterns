@@ -56,6 +56,10 @@
     <Compile Include="Migrations\202008020950175_Init.designer.cs">
       <DependentUpon>202008020950175_Init.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202008021333520_Init1.cs" />
+    <Compile Include="Migrations\202008021333520_Init1.designer.cs">
+      <DependentUpon>202008021333520_Init1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\ModelDevice.cs" />
     <Compile Include="ModelDictionary.cs" />
@@ -69,6 +73,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202008020950175_Init.resx">
       <DependentUpon>202008020950175_Init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008021333520_Init1.resx">
+      <DependentUpon>202008021333520_Init1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

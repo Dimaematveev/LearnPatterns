@@ -1,16 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using DataBase.BL;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using ViewModel.BL;
 
 namespace Dictionary.WPF.EditAdd
 {
@@ -19,12 +8,12 @@ namespace Dictionary.WPF.EditAdd
     /// </summary>
     public partial class ModelWindows : Window
     {
-        public readonly ModelView ModelView;
-        public ModelWindows(ModelView modelView)
+        public readonly ModelDevice ModelDevice;
+        public ModelWindows(ModelDevice modelDevice)
         {
             InitializeComponent();
-            this.ModelView = modelView;
-            this.DataContext = this.ModelView;
+            this.ModelDevice = modelDevice;
+            this.DataContext = this.ModelDevice;
         }
         private void Accept_Click(object sender, RoutedEventArgs e)
         {
