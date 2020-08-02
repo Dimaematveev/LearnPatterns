@@ -1,5 +1,7 @@
 ﻿using DataBase.BL;
 using Dictionary.WPF.EditAdd;
+using Dictionary.WPF.ViewDictionary;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data.Entity;
@@ -13,17 +15,23 @@ namespace Dictionary.WPF
     {
         private readonly BalanceDictionary db;
         private RelayCommand addCommand;
-        private UserControl selectUserControl;
-        public UserControl SelectUserControl
+        private Relation selectRelation;
+        public Relation SelectRelation
         {
-            get { return selectUserControl; }
+            get { return selectRelation; }
             set
             {
-                selectUserControl = value;
-                OnPropertyChanged(nameof(SelectUserControl));
+                selectRelation = value;
+                OnPropertyChanged(nameof(SelectRelation));
             }
         }
-        public Dictionary<string, UserControl> ListDictionarys { get; }
+
+        ~ApplicationViewModel()
+        {
+            selectRelation = null;
+            ListRelations.Clear();
+        }
+        public List<Relation> ListRelations { get; }
      #region Списки приватные Словарей
         private IEnumerable<Dic_DeviceModel>  deviceModels;
         private IEnumerable<Dic_DeviceType>  deviceTypes;
@@ -39,12 +47,12 @@ namespace Dictionary.WPF
                 return addCommand ??
                   (addCommand = new RelayCommand((o) =>
                   {
-                      ModelWindows modelWindows = new ModelWindows(new Dic_DeviceModel(), DiviceTypes);
-                      if (modelWindows.ShowDialog() == true)
+                      SelectRelation.AddEditWindow.DataContext = SelectRelation.NewObject;
+                      if (SelectRelation.AddEditWindow.ShowDialog() == true)
                       {
-                          Dic_DeviceModel deviceModel = modelWindows.DeviceModel;
-                         
-                          db.DeviceModels.Add(deviceModel);
+                          var deviceModel = SelectRelation.AddEditWindow.DataContext;
+
+                          SelectRelation.TableDb.Add(deviceModel);
                           db.SaveChanges();
                       }
                   }));
@@ -61,13 +69,13 @@ namespace Dictionary.WPF
                 OnPropertyChanged(nameof(DeviceModels));
             }
         }
-        public IEnumerable<Dic_DeviceType> DiviceTypes
+        public IEnumerable<Dic_DeviceType> DeviceTypes
         {
             get { return deviceTypes; }
             set
             {
                 deviceTypes = value;
-                OnPropertyChanged(nameof(DiviceTypes));
+                OnPropertyChanged(nameof(DeviceTypes));
             }
         }
         public IEnumerable<Dic_DeviceGadget> DeviceGadgets
@@ -104,17 +112,18 @@ namespace Dictionary.WPF
         {
             db = new BalanceDictionary();
             DeviceGadgets = GetBdToList(db.DeviceGadgets);
-            deviceTypes = GetBdToList(db.DeviceTypes);
+            DeviceTypes = GetBdToList(db.DeviceTypes);
             DeviceModels = GetBdToList(db.DeviceModels);
-            deviceSp_Sis = GetBdToList(db.DeviceSp_Si);
-            deviceLocations = GetBdToList(db.DeviceLocations);
-            ListDictionarys = new Dictionary<string, UserControl>();
-            ListDictionarys.Add("Название таблиц",new ViewDictionary.GadgetControl());
-            ListDictionarys.Add("Модели устройств",new ViewDictionary.ModelControl());
-            ListDictionarys.Add("Типы устройств", null);
-            ListDictionarys.Add("Местоположение", null);
-            ListDictionarys.Add("СП и СИ", null);
-
+            DeviceSp_Sis = GetBdToList(db.DeviceSp_Si);
+            DeviceLocations = GetBdToList(db.DeviceLocations);
+            ListRelations = new List<Relation>
+            {
+                new Relation("Название таблиц", new ViewDictionary.GadgetControl(), new EditAdd.GadgetWindows(null), db.DeviceGadgets, new Dic_DeviceGadget()),
+                new Relation("Модели устройств", new ViewDictionary.ModelControl(), new EditAdd.ModelWindows(null,DeviceTypes), db.DeviceModels, new Dic_DeviceModel()),
+                new Relation("Типы устройств", null, new EditAdd.TypeWindows(null,DeviceGadgets), db.DeviceTypes, new Dic_DeviceType()),
+                new Relation("Местоположение", null, new EditAdd.LocationWindows(null), db.DeviceLocations, new Dic_DeviceLocation()),
+                new Relation("СП и СИ", null, new EditAdd.Sp_SiWindows(null), db.DeviceSp_Si, new Dic_DeviceSp_Si())
+            };
         }
         /// <summary>
         /// Получить данные из БД в список.

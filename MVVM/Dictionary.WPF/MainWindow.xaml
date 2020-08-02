@@ -15,10 +15,10 @@
             <ColumnDefinition Width="auto" MinWidth="90"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <ListView ItemsSource="{Binding ListDictionarys}" SelectedValue="{Binding SelectUserControl}" SelectedValuePath="Value" DisplayMemberPath="Key" Grid.Column="0" Grid.Row="0"/>
+        <ListView ItemsSource="{Binding ListRelations}" SelectedValue="{Binding SelectRelation}"  DisplayMemberPath="Text" Grid.Column="0" Grid.Row="0"/>
         <Grid x:Name="MyUI" Grid.Column="1" Margin="10">
-            
-            <ContentControl Content="{Binding SelectUserControl}" Margin="10"/>
+
+            <ContentControl Content="{Binding SelectRelation.ViewControl}" Margin="10"/>
         </Grid>
 
         <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center">

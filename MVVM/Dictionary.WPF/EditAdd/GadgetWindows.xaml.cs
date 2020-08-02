@@ -19,7 +19,7 @@ namespace Dictionary.WPF.EditAdd
     /// </summary>
     public partial class GadgetWindows : Window
     {
-        Dic_DeviceGadget DeviceGadget;
+        private readonly Dic_DeviceGadget DeviceGadget;
         public GadgetWindows(Dic_DeviceGadget deviceGadget)
         {
             InitializeComponent();
