@@ -23,7 +23,6 @@ namespace ViewModel.BL
             {
                 modelDevice.TypeDeviceID = value;
                 OnPropertyChanged(nameof(TypeDeviceID));
-                OnPropertyChanged(nameof(TypeDeviceName));
             }    
         }
         public string Name

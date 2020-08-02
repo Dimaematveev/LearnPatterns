@@ -10,8 +10,28 @@ namespace Dictionary.WPF
     public class ApplicationViewModel : INotifyPropertyChanged
     {
         private readonly ModelDictionary db;
+        RelayCommand addCommand;
         private IEnumerable<ModelView> modelViews;
         private IEnumerable<TypeView> typeViews;
+
+        // команда добавления
+        public RelayCommand AddCommand
+        {
+            get
+            {
+                return addCommand ??
+                  (addCommand = new RelayCommand((o) =>
+                  {
+                      EditAdd.ModelWindows modelWindows = new EditAdd.ModelWindows(new ModelView(new ModelDevice()));
+                      if (modelWindows.ShowDialog() == true)
+                      {
+                          ModelView modelView = modelWindows.ModelView;
+                          db.ModelDevices.Add(modelView.GetModelDevice());
+                          db.SaveChanges();
+                      }
+                  }));
+            }
+        }
 
         public IEnumerable<ModelView> ModelViews
         {
