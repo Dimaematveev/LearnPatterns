@@ -52,10 +52,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\Model.cs" />
+    <Compile Include="Model\ModelDevice.cs" />
     <Compile Include="ModelDictionary.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Model\Type.cs" />
+    <Compile Include="Model\TypeDevice.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

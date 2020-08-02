@@ -7,12 +7,12 @@ namespace DataBase.BL
     using System.Data.Entity.Spatial;
 
     [Table("Type")]
-    public partial class Type
+    public partial class TypeDevice
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Type()
+        public TypeDevice()
         {
-            Models = new HashSet<Model>();
+            ModelsDevices = new HashSet<ModelDevice>();
         }
 
         public int ID { get; set; }
@@ -21,6 +21,6 @@ namespace DataBase.BL
         public string Name { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Model> Models { get; set; }
+        public virtual ICollection<ModelDevice> ModelsDevices { get; set; }
     }
 }

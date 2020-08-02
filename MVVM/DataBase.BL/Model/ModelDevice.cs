@@ -7,15 +7,15 @@ namespace DataBase.BL
     using System.Data.Entity.Spatial;
 
     [Table("Model")]
-    public partial class Model
+    public partial class ModelDevice
     {
         public int ID { get; set; }
 
-        public int TypeID { get; set; }
+        public int TypeDeviceID { get; set; }
 
         [StringLength(10)]
         public string Name { get; set; }
 
-        public virtual Type Type { get; set; }
+        public virtual TypeDevice TypeDevice { get; set; }
     }
 }

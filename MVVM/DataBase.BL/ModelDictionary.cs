@@ -12,22 +12,22 @@ namespace DataBase.BL
         {
         }
 
-        public virtual DbSet<Model> Models { get; set; }
-        public virtual DbSet<Type> Types { get; set; }
+        public virtual DbSet<ModelDevice> ModelsDevises { get; set; }
+        public virtual DbSet<TypeDevice> TypesDevices { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Model>()
+            modelBuilder.Entity<ModelDevice>()
                 .Property(e => e.Name)
                 .IsFixedLength();
 
-            modelBuilder.Entity<Type>()
+            modelBuilder.Entity<TypeDevice>()
                 .Property(e => e.Name)
                 .IsFixedLength();
 
-            modelBuilder.Entity<Type>()
-                .HasMany(e => e.Models)
-                .WithRequired(e => e.Type)
+            modelBuilder.Entity<TypeDevice>()
+                .HasMany(e => e.ModelsDevices)
+                .WithRequired(e => e.TypeDevice)
                 .WillCascadeOnDelete(false);
         }
     }
