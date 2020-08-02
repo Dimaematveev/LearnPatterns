@@ -5,12 +5,45 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Dictionary.WPF.EditAdd"
         mc:Ignorable="d"
-         Title="PhoneWindow" Height="150" Width="300">
-    <Window.Resources>
+       Title="DictionaryModel" MinHeight="120" Height="120" MaxHeight="120" MinWidth="300" Width="300" ResizeMode="CanResize">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <StackPanel x:Name="MainStackPanel" VerticalAlignment="Center" Orientation="Vertical" Margin="10,0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Label Content="_Тип устройства" Grid.Column="0"/>
+                <ComboBox x:Name="TypeCombobox" SelectedValue="{Binding DeviceTypeID}" DisplayMemberPath="Name" SelectedValuePath="ID" Grid.Column="1"/>
+            </Grid>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Label Content="_Модель устройства" Grid.Column="0"/>
+                <TextBox x:Name="ModelName" Text="{Binding Name}" Grid.Column="1"/>
+            </Grid>
+        </StackPanel>
+            
+        <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center">
+            <Button IsDefault="True" Click="Accept_Click" MinWidth="60" Margin="5">OK</Button>
+            <Button IsCancel="True" MinWidth="60" Margin="5">Отмена</Button>
+        </StackPanel>
+    </Grid>
+</Window>
+<!--<Window.Resources>
         <Style TargetType="TextBlock">
             <Setter Property="Margin" Value="8" />
         </Style>
         <Style TargetType="TextBox">
+            <Setter Property="Margin" Value="8" />
+        </Style>
+        <Style TargetType="ComboBox">
             <Setter Property="Margin" Value="8" />
         </Style>
     </Window.Resources>
@@ -28,7 +61,22 @@
         <TextBlock Text="Модель" Grid.Row="1" />
 
 
-        <TextBox Text="{Binding DeviceTypeID}" Grid.Column="1" />
+        -->
+<!--<ComboBox x:Name="TypeCombox" SelectedValue="{Binding DeviceTypeID}" ItemsSource="{Binding TypeDevices}"  SelectedValuePath="ID" Grid.Column="1" VerticalAlignment="Center">-->
+<!--
+        <ComboBox x:Name="TypeCombox" ItemsSource="{Binding TypeDevices}" DisplayMemberPath="Name"  Grid.Column="1" VerticalAlignment="Center"/>
+        -->
+<!--<ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal" >
+                        <TextBlock Text="{Binding Path=ID}"/>
+                        <TextBlock Text=" - "/>
+                        <TextBlock Text="{Binding Path=Name}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>-->
+<!--
         <TextBox Text="{Binding Name}" Grid.Column="1" Grid.Row="1" />
 
         <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Grid.Row="3" Grid.Column="1">
@@ -36,4 +84,4 @@
             <Button IsCancel="True" MinWidth="60" Margin="5">Отмена</Button>
         </StackPanel>
     </Grid>
-</Window>
+</Window>-->

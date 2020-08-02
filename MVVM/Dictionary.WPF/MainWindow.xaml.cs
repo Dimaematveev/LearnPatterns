@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using Dictionary.WPF.ViewDictionary;
+using System.Windows;
 
 namespace Dictionary.WPF
 {
@@ -11,6 +12,14 @@ namespace Dictionary.WPF
         {
             InitializeComponent();
             this.DataContext = new ApplicationViewModel();
+            
+
+            
+            Loaded += MainWindow_Loaded;
+        }
+
+        private void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        {
         }
     }
 }

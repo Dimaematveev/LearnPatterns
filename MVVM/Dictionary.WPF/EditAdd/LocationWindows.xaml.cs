@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataBase.BL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,9 +19,16 @@ namespace Dictionary.WPF.EditAdd
     /// </summary>
     public partial class LocationWindows : Window
     {
-        public LocationWindows()
+        public readonly Dic_DeviceLocation DeviceLocation;
+        public LocationWindows(Dic_DeviceLocation deviceLocation)
         {
             InitializeComponent();
+            DeviceLocation = deviceLocation;
+            this.DataContext = DeviceLocation;
+        }
+        private void Accept_Click(object sender, RoutedEventArgs e)
+        {
+            this.DialogResult = true;
         }
     }
 }

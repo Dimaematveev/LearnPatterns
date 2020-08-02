@@ -18,7 +18,7 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Label Content="_Имя таблицы" Grid.Column="0"/>
-                <ComboBox x:Name="GadgetName" Grid.Column="1"/>
+                <ComboBox x:Name="GadgetCombox"  SelectedValue="{Binding DeviceGadgetID}" DisplayMemberPath="Name" SelectedValuePath="ID" Grid.Column="1"/>
             </Grid>
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -26,17 +26,13 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Label Content="_Тип устройства" Grid.Column="0"/>
-                <TextBox x:Name="TypeName" Grid.Column="1"/>
+                <TextBox x:Name="TypeName" Text="{Binding Name}" Grid.Column="1"/>
             </Grid>
             
         </StackPanel>
-        <Grid Grid.Row="1" HorizontalAlignment="Center">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="50"/>
-                <ColumnDefinition Width="70"/>
-            </Grid.ColumnDefinitions>
-            <Button x:Name="OK" Content="OK" Grid.Column="0"/>
-            <Button x:Name="Cancel" Content="Отмена" Grid.Column="1"/>
-        </Grid>
+        <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center">
+            <Button IsDefault="True" Click="Accept_Click" MinWidth="60" Margin="5">OK</Button>
+            <Button IsCancel="True" MinWidth="60" Margin="5">Отмена</Button>
+        </StackPanel>
     </Grid>
 </Window>

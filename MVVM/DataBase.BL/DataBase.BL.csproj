@@ -65,9 +65,14 @@
     <Compile Include="Migrations\202008021452011_Rename_NameClass.designer.cs">
       <DependentUpon>202008021452011_Rename_NameClass.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202008021646519_Add_Gadget.cs" />
+    <Compile Include="Migrations\202008021646519_Add_Gadget.designer.cs">
+      <DependentUpon>202008021646519_Add_Gadget.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Dic_DeviceLocation.cs" />
     <Compile Include="Model\Dic_DeviceModel.cs" />
+    <Compile Include="Model\Dic_DeviceGadget.cs" />
     <Compile Include="NotifyPropertyChanged_Default.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Model\Dic_DeviceSp_Si.cs" />
@@ -86,6 +91,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202008021452011_Rename_NameClass.resx">
       <DependentUpon>202008021452011_Rename_NameClass.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008021646519_Add_Gadget.resx">
+      <DependentUpon>202008021646519_Add_Gadget.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

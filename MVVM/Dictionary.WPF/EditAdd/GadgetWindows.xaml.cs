@@ -15,21 +15,17 @@ using System.Windows.Shapes;
 namespace Dictionary.WPF.EditAdd
 {
     /// <summary>
-    /// Interaction logic for TypeWindows.xaml
+    /// Interaction logic for LocationWindows.xaml
     /// </summary>
-    public partial class TypeWindows : Window
+    public partial class GadgetWindows : Window
     {
-        public readonly Dic_DeviceType DeviceType;
-        private readonly IEnumerable<Dic_DeviceGadget> DeviceGadgets;
-        public TypeWindows(Dic_DeviceType deviceType, IEnumerable<Dic_DeviceGadget> deviceGadgets)
+        Dic_DeviceGadget DeviceGadget;
+        public GadgetWindows(Dic_DeviceGadget deviceGadget)
         {
             InitializeComponent();
-            DeviceType = deviceType;
-            DeviceGadgets = deviceGadgets;
-            GadgetCombox.ItemsSource = DeviceGadgets;
-            this.DataContext = DeviceType;
+            DeviceGadget = deviceGadget;
+            this.DataContext = DeviceGadget;
         }
-
         private void Accept_Click(object sender, RoutedEventArgs e)
         {
             this.DialogResult = true;

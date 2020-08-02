@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataBase.BL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,9 +19,22 @@ namespace Dictionary.WPF.EditAdd
     /// </summary>
     public partial class Sp_SiWindows : Window
     {
-        public Sp_SiWindows()
+        public readonly Dic_DeviceSp_Si DeviceSp_Si;
+        private readonly Dictionary<bool, string> TypeCheck;
+        public Sp_SiWindows(Dic_DeviceSp_Si deviceSp_Si)
         {
             InitializeComponent();
+            DeviceSp_Si = deviceSp_Si;
+            this.DataContext = DeviceSp_Si;
+            TypeCheck = new Dictionary<bool, string>();
+            TypeCheck.Add(true, "СП");
+            TypeCheck.Add(false, "СИ");
+            TypeCheckName.ItemsSource = TypeCheck;
+
+        }
+        private void Accept_Click(object sender, RoutedEventArgs e)
+        {
+            this.DialogResult = true;
         }
     }
 }

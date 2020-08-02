@@ -18,7 +18,7 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Label Content="_RegisterNumber" Grid.Column="0"/>
-                <TextBox x:Name="RegisterNumberName" Grid.Column="1"/>
+                <TextBox x:Name="RegisterNumberName" Text="{Binding RegisterNumber}" Grid.Column="1"/>
             </Grid>
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -26,7 +26,7 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Label Content="_Дело" Grid.Column="0"/>
-                <TextBox x:Name="DealName" Grid.Column="1"/>
+                <TextBox x:Name="DealName" Text="{Binding Deal}" Grid.Column="1"/>
             </Grid>
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -34,7 +34,7 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Label Content="_Страницы" Grid.Column="0"/>
-                <TextBox x:Name="PageName" Grid.Column="1"/>
+                <TextBox x:Name="PageName" Text="{Binding Page}" Grid.Column="1"/>
             </Grid>
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -42,17 +42,13 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Label Content="_Вид проверки" Grid.Column="0"/>
-                <ComboBox x:Name="TypeCheckName" Grid.Column="1" VerticalAlignment="Center"/>
+                <ComboBox x:Name="TypeCheckName" SelectedValue="{Binding IsSp}" DisplayMemberPath="Value" SelectedValuePath="Key" Grid.Column="1" VerticalAlignment="Center"/>
             </Grid>
             
         </StackPanel>
-        <Grid Grid.Row="1" HorizontalAlignment="Center">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="50"/>
-                <ColumnDefinition Width="70"/>
-            </Grid.ColumnDefinitions>
-            <Button x:Name="OK" Content="ОК" Grid.Column="0"/>
-            <Button x:Name="Cancel" Content="Отмена" Grid.Column="1"/>
-        </Grid>
+        <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center">
+            <Button IsDefault="True" Click="Accept_Click" MinWidth="60" Margin="5">OK</Button>
+            <Button IsCancel="True" MinWidth="60" Margin="5">Отмена</Button>
+        </StackPanel>
     </Grid>
 </Window>
