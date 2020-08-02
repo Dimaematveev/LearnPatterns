@@ -4,7 +4,6 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Dictionary.WPF"
-        xmlns:UI="clr-namespace:Dictionary.WPF.ViewDictionary"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
@@ -13,28 +12,21 @@
             <RowDefinition Height="50" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto" MinWidth="90"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <TreeView Grid.Column="0" Grid.Row="0">
-            <TreeViewItem Header="Словари" x:Name="Dictionarys" IsExpanded="True">
-                <TreeViewItem Header="Типы устройств" x:Name="TreeType"/>
-                <TreeViewItem Header="Модели устройств" x:Name="TreeModel"/>
-                <TreeViewItem Header="Местоположение" x:Name="TreeLocation"/>
-                <TreeViewItem Header="СП и СИ" x:Name="TreeSp_Si"/>
-            </TreeViewItem>
-        </TreeView>
-        <Grid x:Name="MyUI" Grid.Column="1">
-            <UI:ModelControl Visibility="Hidden"/>
-            <UI:GadgetControl Visibility="Hidden"/>
+        <ListView ItemsSource="{Binding ListDictionarys}" SelectedValue="{Binding SelectUserControl}" SelectedValuePath="Value" DisplayMemberPath="Key" Grid.Column="0" Grid.Row="0"/>
+        <Grid x:Name="MyUI" Grid.Column="1" Margin="10">
+            
+            <ContentControl Content="{Binding SelectUserControl}" Margin="10"/>
         </Grid>
 
         <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center">
             <Button x:Name="Add" Content="Добавить" Margin="10" Command="{Binding AddCommand}"  />
             <Button Content="Изменить" Margin="10" Command="{Binding EditCommand}" 
                 CommandParameter="{Binding ElementName=modelsList, Path=SelectedItem}"  />
-            <Button Content="Удалить" Margin="10" Command="{Binding DeleteCommand}" 
-                CommandParameter="{Binding ElementName=phonesList, Path=SelectedItem}"  />
+            <Button Content="Удалить" Margin="10,10,10,0" Command="{Binding DeleteCommand}" 
+                CommandParameter="{Binding ElementName=phonesList, Path=SelectedItem}" Height="30" VerticalAlignment="Top" Click="Button_Click"  />
         </StackPanel>
     </Grid>
 </Window>

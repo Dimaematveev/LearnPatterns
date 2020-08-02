@@ -1,18 +1,30 @@
 ﻿using DataBase.BL;
 using Dictionary.WPF.EditAdd;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data.Entity;
 using System.Linq;
+using System.Windows;
+using System.Windows.Controls;
 
 namespace Dictionary.WPF
 {
     public class ApplicationViewModel : INotifyPropertyChanged
     {
         private readonly BalanceDictionary db;
-        RelayCommand addCommand;
-    #region Списки приватные Словарей
+        private RelayCommand addCommand;
+        private UserControl selectUserControl;
+        public UserControl SelectUserControl
+        {
+            get { return selectUserControl; }
+            set
+            {
+                selectUserControl = value;
+                OnPropertyChanged(nameof(SelectUserControl));
+            }
+        }
+        public Dictionary<string, UserControl> ListDictionarys { get; }
+     #region Списки приватные Словарей
         private IEnumerable<Dic_DeviceModel>  deviceModels;
         private IEnumerable<Dic_DeviceType>  deviceTypes;
         private IEnumerable<Dic_DeviceGadget>  deviceGadgets;
@@ -87,6 +99,7 @@ namespace Dictionary.WPF
         }
     #endregion
 
+
         public ApplicationViewModel()
         {
             db = new BalanceDictionary();
@@ -95,6 +108,13 @@ namespace Dictionary.WPF
             DeviceModels = GetBdToList(db.DeviceModels);
             deviceSp_Sis = GetBdToList(db.DeviceSp_Si);
             deviceLocations = GetBdToList(db.DeviceLocations);
+            ListDictionarys = new Dictionary<string, UserControl>();
+            ListDictionarys.Add("Название таблиц",new ViewDictionary.GadgetControl());
+            ListDictionarys.Add("Модели устройств",new ViewDictionary.ModelControl());
+            ListDictionarys.Add("Типы устройств", null);
+            ListDictionarys.Add("Местоположение", null);
+            ListDictionarys.Add("СП и СИ", null);
+
         }
         /// <summary>
         /// Получить данные из БД в список.

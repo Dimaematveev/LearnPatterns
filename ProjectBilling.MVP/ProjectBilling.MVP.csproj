@@ -68,6 +68,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PhoneViewModel.cs" />
     <Compile Include="ProjectsPresenter.cs" />
     <Compile Include="ProjectView.xaml.cs">
       <DependentUpon>ProjectView.xaml</DependentUpon>
