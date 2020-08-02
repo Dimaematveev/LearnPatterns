@@ -12,8 +12,8 @@ namespace DataBase.BL
         {
         }
 
-        public virtual DbSet<ModelDevice> ModelsDevises { get; set; }
-        public virtual DbSet<TypeDevice> TypesDevices { get; set; }
+        public virtual DbSet<ModelDevice> ModelDevices { get; set; }
+        public virtual DbSet<TypeDevice> TypeDevices { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -26,7 +26,7 @@ namespace DataBase.BL
                 .IsFixedLength();
 
             modelBuilder.Entity<TypeDevice>()
-                .HasMany(e => e.ModelsDevices)
+                .HasMany(e => e.ModelDevices)
                 .WithRequired(e => e.TypeDevice)
                 .WillCascadeOnDelete(false);
         }

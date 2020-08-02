@@ -35,9 +35,9 @@ namespace ViewModel.BL
                 OnPropertyChanged(nameof(Name));
             }
         }
-        public TypeDevice TypeDeviceName
+        public string TypeDeviceName
         {
-            get { return modelDevice.TypeDevice; }
+            get { return modelDevice.TypeDevice.Name; }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

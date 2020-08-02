@@ -34,10 +34,10 @@ namespace Dictionary.WPF
         public ApplicationViewModel()
         {
             db = new ModelDictionary();
-            db.ModelsDevises.Load();
-            ModelViews = db.ModelsDevises.Local.Select(x => new ModelView(x)).ToList();
-            db.TypesDevices.Load();
-            TypeViews = db.TypesDevices.Local.Select(x => new TypeView(x)).ToList();
+            db.ModelDevices.Load();
+            ModelViews = db.ModelDevices.Local.Select(x => new ModelView(x)).ToList();
+            db.TypeDevices.Load();
+            TypeViews = db.TypeDevices.Local.Select(x => new TypeView(x)).ToList();
         }
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged(string prop)

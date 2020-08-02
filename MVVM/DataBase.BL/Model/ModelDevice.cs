@@ -6,7 +6,7 @@ namespace DataBase.BL
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("Model")]
+    [Table("ModelDevice")]
     public partial class ModelDevice
     {
         public int ID { get; set; }
