@@ -1,15 +1,18 @@
 ﻿namespace DataBase.BL.Migrations
 {
+    using System;
+    using System.Data.Entity;
     using System.Data.Entity.Migrations;
+    using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<DataBase.BL.ModelDictionary>
+    internal sealed class Configuration : DbMigrationsConfiguration<DataBase.BL.BalanceDictionary>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(DataBase.BL.ModelDictionary context)
+        protected override void Seed(DataBase.BL.BalanceDictionary context)
         {
             //  This method will be called after migrating to the latest version.
 

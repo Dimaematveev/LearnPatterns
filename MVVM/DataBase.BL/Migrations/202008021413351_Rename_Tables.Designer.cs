@@ -7,13 +7,13 @@ namespace DataBase.BL.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class Init : IMigrationMetadata
+    public sealed partial class Rename_Tables : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Init));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Rename_Tables));
         
         string IMigrationMetadata.Id
         {
-            get { return "202008020950175_Init"; }
+            get { return "202008021413351_Rename_Tables"; }
         }
         
         string IMigrationMetadata.Source

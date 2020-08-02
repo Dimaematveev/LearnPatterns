@@ -52,30 +52,33 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\202008020950175_Init.cs" />
-    <Compile Include="Migrations\202008020950175_Init.designer.cs">
-      <DependentUpon>202008020950175_Init.cs</DependentUpon>
+    <Compile Include="BalanceDictionary.cs" />
+    <Compile Include="Migrations\202008021402546_Init.cs" />
+    <Compile Include="Migrations\202008021402546_Init.designer.cs">
+      <DependentUpon>202008021402546_Init.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202008021333520_Init1.cs" />
-    <Compile Include="Migrations\202008021333520_Init1.designer.cs">
-      <DependentUpon>202008021333520_Init1.cs</DependentUpon>
+    <Compile Include="Migrations\202008021413351_Rename_Tables.cs" />
+    <Compile Include="Migrations\202008021413351_Rename_Tables.designer.cs">
+      <DependentUpon>202008021413351_Rename_Tables.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Model\ModelDevice.cs" />
-    <Compile Include="ModelDictionary.cs" />
+    <Compile Include="Model\DeviceLocation.cs" />
+    <Compile Include="Model\DeviceModel.cs" />
+    <Compile Include="NotifyPropertyChanged_Default.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Model\TypeDevice.cs" />
+    <Compile Include="Model\DeviceSp_Si.cs" />
+    <Compile Include="Model\DeviceType.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202008020950175_Init.resx">
-      <DependentUpon>202008020950175_Init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202008021402546_Init.resx">
+      <DependentUpon>202008021402546_Init.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202008021333520_Init1.resx">
-      <DependentUpon>202008021333520_Init1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202008021413351_Rename_Tables.resx">
+      <DependentUpon>202008021413351_Rename_Tables.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
