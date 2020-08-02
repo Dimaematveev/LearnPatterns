@@ -1,7 +1,7 @@
 ﻿using DataBase.BL;
 using System.ComponentModel;
 
-namespace ModelView.BL
+namespace ViewModel.BL
 {
     public class ModelView : INotifyPropertyChanged
     {

@@ -2,7 +2,7 @@
 using System;
 using System.ComponentModel;
 
-namespace ModelView.BL
+namespace ViewModel.BL
 {
     public class TypeView : INotifyPropertyChanged
     {
@@ -11,7 +11,10 @@ namespace ModelView.BL
         {
             return typeDevice;
         }
-
+        public TypeView(TypeDevice type)
+        {
+            this.typeDevice = type;
+        }
         public string Name
         {
             get { return typeDevice.Name; }
