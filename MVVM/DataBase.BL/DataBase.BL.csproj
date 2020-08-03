@@ -69,6 +69,10 @@
     <Compile Include="Migrations\202008021646519_Add_Gadget.designer.cs">
       <DependentUpon>202008021646519_Add_Gadget.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202008031352504_Edit_Class.cs" />
+    <Compile Include="Migrations\202008031352504_Edit_Class.designer.cs">
+      <DependentUpon>202008031352504_Edit_Class.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Dic_DeviceLocation.cs" />
     <Compile Include="Model\Dic_DeviceModel.cs" />
@@ -94,6 +98,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202008021646519_Add_Gadget.resx">
       <DependentUpon>202008021646519_Add_Gadget.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008031352504_Edit_Class.resx">
+      <DependentUpon>202008031352504_Edit_Class.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

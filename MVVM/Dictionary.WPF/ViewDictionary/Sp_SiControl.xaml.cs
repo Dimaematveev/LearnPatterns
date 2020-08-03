@@ -9,10 +9,11 @@ namespace Dictionary.WPF.ViewDictionary
     /// </summary>
     public partial class Sp_SiControl : UserControl
     {
-        
+
         public Sp_SiControl()
         {
             InitializeComponent();
         }
+
     }
 }

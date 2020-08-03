@@ -22,7 +22,7 @@ namespace DataBase.BL
             DeviceModels = new HashSet<Dic_DeviceModel>();
         }
 
-        public int ID
+        public override int ID
         {
             get { return _ID; }
             set { _ID = value; }
@@ -76,6 +76,32 @@ namespace DataBase.BL
             {
                 _DeviceModels = value;
                 OnPropertyChanged(nameof(DeviceModels));
+            }
+        }
+
+
+        public override object Copy()
+        {
+            Dic_DeviceType newDevice = null;
+
+            newDevice = new Dic_DeviceType()
+            {
+                Name = this.Name,
+                DeviceGadgetID = this.DeviceGadgetID,
+                IsDelete = this.IsDelete
+            };
+
+            
+            return newDevice;
+        }
+
+        public override void Fill(object obj)
+        {
+            if (obj is Dic_DeviceType device)
+            {
+                Name = device.Name;
+                DeviceGadgetID = device.DeviceGadgetID;
+                IsDelete = device.IsDelete;
             }
         }
     }

@@ -29,41 +29,14 @@
                 <TextBox x:Name="ModelName" Text="{Binding Name}" Grid.Column="1"/>
             </Grid>
         </StackPanel>
-            
+
         <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center">
             <Button IsDefault="True" Click="Accept_Click" MinWidth="60" Margin="5">OK</Button>
             <Button IsCancel="True" MinWidth="60" Margin="5">Отмена</Button>
         </StackPanel>
     </Grid>
 </Window>
-<!--<Window.Resources>
-        <Style TargetType="TextBlock">
-            <Setter Property="Margin" Value="8" />
-        </Style>
-        <Style TargetType="TextBox">
-            <Setter Property="Margin" Value="8" />
-        </Style>
-        <Style TargetType="ComboBox">
-            <Setter Property="Margin" Value="8" />
-        </Style>
-    </Window.Resources>
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="100" />
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
-        <TextBlock Text="Тип" />
-        <TextBlock Text="Модель" Grid.Row="1" />
-
-
-        -->
-<!--<ComboBox x:Name="TypeCombox" SelectedValue="{Binding DeviceTypeID}" ItemsSource="{Binding TypeDevices}"  SelectedValuePath="ID" Grid.Column="1" VerticalAlignment="Center">-->
-<!--
+    <!--
         <ComboBox x:Name="TypeCombox" ItemsSource="{Binding TypeDevices}" DisplayMemberPath="Name"  Grid.Column="1" VerticalAlignment="Center"/>
         -->
 <!--<ComboBox.ItemTemplate>
@@ -76,12 +49,3 @@
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>-->
-<!--
-        <TextBox Text="{Binding Name}" Grid.Column="1" Grid.Row="1" />
-
-        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Grid.Row="3" Grid.Column="1">
-            <Button IsDefault="True" Click="Accept_Click" MinWidth="60" Margin="5">OK</Button>
-            <Button IsCancel="True" MinWidth="60" Margin="5">Отмена</Button>
-        </StackPanel>
-    </Grid>
-</Window>-->

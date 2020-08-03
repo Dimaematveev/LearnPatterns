@@ -12,7 +12,7 @@ namespace DataBase.BL
         private int _ID;
         private string _Name;
         private bool _IsDelete;
-        public int ID
+        public override int ID
         {
             get { return _ID; }
             set { _ID = value; }
@@ -36,6 +36,29 @@ namespace DataBase.BL
             {
                 _IsDelete = value;
                 OnPropertyChanged(nameof(IsDelete));
+            }
+        }
+
+        public override object Copy()
+        {
+            Dic_DeviceLocation newDevice = null;
+           
+            newDevice = new Dic_DeviceLocation()
+            {
+                Name = this.Name,
+                IsDelete = this.IsDelete
+            };
+
+            
+            return newDevice;
+        }
+
+        public override void Fill(object obj)
+        {
+            if (obj is Dic_DeviceLocation device)
+            {
+                Name = device.Name;
+                IsDelete = device.IsDelete;
             }
         }
     }

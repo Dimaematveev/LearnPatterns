@@ -1,4 +1,5 @@
 ﻿using Dictionary.WPF.EditAdd;
+using Dictionary.WPF.ViewDictionary;
 using System;
 using System.Collections;
 using System.Data.Entity;

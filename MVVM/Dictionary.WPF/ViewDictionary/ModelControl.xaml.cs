@@ -9,10 +9,12 @@ namespace Dictionary.WPF.ViewDictionary
     /// </summary>
     public partial class ModelControl : UserControl
     {
-        
+
+
         public ModelControl()
         {
             InitializeComponent();
         }
+
     }
 }

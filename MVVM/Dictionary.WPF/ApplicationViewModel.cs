@@ -15,6 +15,25 @@ namespace Dictionary.WPF
     {
         private readonly BalanceDictionary db;
         private RelayCommand addCommand;
+        private RelayCommand editCommand;
+
+        /// <summary>
+        /// выбранное устройство
+        /// </summary>
+        private object selectedDic_Device;
+        public object SelectedDic_Device
+        {
+            get { return selectedDic_Device; }
+            set
+            {
+                selectedDic_Device = value;
+                OnPropertyChanged(nameof(SelectedDic_Device));
+            }
+        }
+
+        /// <summary>
+        /// выбранный словарь
+        /// </summary>
         private Relation selectRelation;
         public Relation SelectRelation
         {
@@ -60,7 +79,37 @@ namespace Dictionary.WPF
             }
         }
 
-    #region Списки Словарей Геттеры и Сеттеры
+        /// <summary>
+        /// Команда Изменения
+        /// </summary>
+        public RelayCommand EditCommand
+        {
+            get
+            {
+                return editCommand ??
+                  (editCommand = new RelayCommand((o) =>
+                  {
+                      ///MessageBox.Show(SelectedDic_Device.ToString());
+                      if (SelectedDic_Device==null)
+                      {
+                          return;
+                      }
+
+                      var Dic_Device = SelectedDic_Device as NotifyPropertyChanged_Default;
+                      var newDic_Device = Dic_Device.Copy() as NotifyPropertyChanged_Default;
+
+                      IEditAddViewWindows editAddViewWindows = SelectRelation.FuncAddEditWindow(newDic_Device);
+                      
+                      if (editAddViewWindows.GetWindow().ShowDialog() == true)
+                      {
+                          Dic_Device.Fill(newDic_Device);
+                          db.SaveChanges();   
+                      }
+                  }));
+            }
+        }
+
+        #region Списки Словарей Геттеры и Сеттеры
         public IEnumerable<Dic_DeviceModel> DeviceModels
         {
             get { return deviceModels; }

@@ -14,7 +14,7 @@ namespace DataBase.BL
         private int _DeviceTypeID;
         private bool _IsDelete;
         private Dic_DeviceType _DeviceType;
-        public int ID 
+        public override int ID 
         { 
             get { return _ID; } 
             set { _ID = value; } 
@@ -58,6 +58,32 @@ namespace DataBase.BL
             {
                 _DeviceType = value;
                 OnPropertyChanged(nameof(Name));
+            }
+        }
+
+
+        public override object Copy()
+        {
+            Dic_DeviceModel newDevice = null;
+          
+            newDevice = new Dic_DeviceModel()
+            {
+                Name = this.Name,
+                DeviceTypeID = this.DeviceTypeID,
+                IsDelete = this.IsDelete
+            };
+
+            
+            return newDevice;
+        }
+
+        public override void Fill(object obj)
+        {
+            if (obj is Dic_DeviceModel device)
+            {
+                Name = device.Name;
+                DeviceTypeID = device.DeviceTypeID;
+                IsDelete = device.IsDelete;
             }
         }
     }

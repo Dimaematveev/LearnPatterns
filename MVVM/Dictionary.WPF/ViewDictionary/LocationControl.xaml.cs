@@ -9,10 +9,10 @@ namespace Dictionary.WPF.ViewDictionary
     /// </summary>
     public partial class LocationControl : UserControl
     {
-        
         public LocationControl()
         {
             InitializeComponent();
         }
+
     }
 }

@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <ListBox Grid.Column="1" x:Name="modelsList" ItemsSource="{Binding DeviceGadgets}" Visibility="Visible">
+        <ListBox Grid.Column="1"  ItemsSource="{Binding DeviceGadgets}" SelectedValue="{Binding SelectedDic_Device}" Visibility="Visible">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>

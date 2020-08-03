@@ -16,7 +16,7 @@ namespace DataBase.BL
         private bool? _IsSp;
         private bool _IsDelete;
 
-        public int ID
+        public override int ID
         {
             get { return _ID; }
             set { _ID = value; }
@@ -73,6 +73,35 @@ namespace DataBase.BL
             {
                 _IsDelete = value;
                 OnPropertyChanged(nameof(IsDelete));
+            }
+        }
+
+
+        public override object Copy()
+        {
+            Dic_DeviceSp_Si newDevice = null;
+            
+            newDevice = new Dic_DeviceSp_Si()
+            {
+                RegisterNumber = this.RegisterNumber,
+                Deal = this.Deal,
+                Page = this.Page,
+                IsSp = this.IsSp,
+                IsDelete = this.IsDelete
+            };
+
+            
+            return newDevice;
+        }
+        public override void Fill(object obj)
+        {
+            if (obj is Dic_DeviceSp_Si device)
+            {
+                RegisterNumber = device.RegisterNumber;
+                Deal = device.Deal;
+                Page = device.Page;
+                IsSp = device.IsSp;
+                IsDelete = device.IsDelete;
             }
         }
     }

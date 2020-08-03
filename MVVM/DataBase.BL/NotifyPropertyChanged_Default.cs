@@ -7,6 +7,9 @@ namespace DataBase.BL
     /// </summary>
     public abstract class NotifyPropertyChanged_Default : INotifyPropertyChanged
     {
+        abstract public int ID { get; set; }
+        abstract public object Copy();
+        abstract public void Fill(object obj);
         public NotifyPropertyChanged_Default() { }
         public event PropertyChangedEventHandler PropertyChanged;
 

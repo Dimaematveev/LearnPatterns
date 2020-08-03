@@ -7,8 +7,8 @@ using System.Windows.Controls;
 
 namespace Dictionary.WPF.ViewDictionary
 {
-    interface IViewControl
+    public interface IViewControl
     {
-        Window GetEditAddWindow();
+        UserControl GetEditAddUserControl();
     }
 }

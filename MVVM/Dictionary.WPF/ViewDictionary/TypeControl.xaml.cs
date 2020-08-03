@@ -14,5 +14,6 @@ namespace Dictionary.WPF.ViewDictionary
         {
             InitializeComponent();
         }
+
     }
 }

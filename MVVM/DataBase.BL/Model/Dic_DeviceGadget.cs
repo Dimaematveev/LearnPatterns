@@ -14,7 +14,7 @@ namespace DataBase.BL
         private bool _IsDelete;
         private ICollection<Dic_DeviceType> _DeviceTypes;
 
-        public int ID
+        public override int ID
         {
             get { return _ID; }
             set { _ID = value; }
@@ -50,6 +50,28 @@ namespace DataBase.BL
             {
                 _DeviceTypes = value;
                 OnPropertyChanged(nameof(DeviceTypes));
+            }
+        }
+
+        public override object Copy()
+        {
+            Dic_DeviceGadget newDevice = null;
+            newDevice = new Dic_DeviceGadget()
+            {
+                Name = this.Name,
+                IsDelete = this.IsDelete
+            };
+
+            
+            return newDevice;
+        }
+
+        public override void Fill(object obj)
+        {
+            if (obj is Dic_DeviceGadget device)
+            {
+                Name = device.Name;
+                IsDelete = device.IsDelete;
             }
         }
     }
