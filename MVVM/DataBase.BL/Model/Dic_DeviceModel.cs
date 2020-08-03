@@ -57,7 +57,7 @@ namespace DataBase.BL
             set
             {
                 _DeviceType = value;
-                OnPropertyChanged(nameof(Name));
+                OnPropertyChanged(nameof(DeviceType));
             }
         }
 

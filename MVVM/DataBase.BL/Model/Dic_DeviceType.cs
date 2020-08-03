@@ -104,5 +104,10 @@ namespace DataBase.BL
                 IsDelete = device.IsDelete;
             }
         }
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

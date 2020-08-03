@@ -13,14 +13,24 @@ namespace Dictionary.WPF
 {
     public class ApplicationViewModel : INotifyPropertyChanged
     {
+        #region Все приватные поля
         private readonly BalanceDictionary db;
+
         private RelayCommand addCommand;
         private RelayCommand editCommand;
-
-        /// <summary>
-        /// выбранное устройство
-        /// </summary>
+        /// <summary> выбранное устройство</summary>
         private object selectedDic_Device;
+        /// <summary> выбранный словарь </summary>
+        private Relation selectRelation;
+        #endregion
+        #region Списки приватные Словарей
+        private IEnumerable<Dic_DeviceModel> deviceModels;
+        private IEnumerable<Dic_DeviceType> deviceTypes;
+        private IEnumerable<Dic_DeviceGadget> deviceGadgets;
+        private IEnumerable<Dic_DeviceLocation> deviceLocations;
+        private IEnumerable<Dic_DeviceSp_Si> deviceSp_Sis;
+        #endregion
+
         public object SelectedDic_Device
         {
             get { return selectedDic_Device; }
@@ -31,10 +41,7 @@ namespace Dictionary.WPF
             }
         }
 
-        /// <summary>
-        /// выбранный словарь
-        /// </summary>
-        private Relation selectRelation;
+       
         public Relation SelectRelation
         {
             get { return selectRelation; }
@@ -45,19 +52,10 @@ namespace Dictionary.WPF
             }
         }
 
-        ~ApplicationViewModel()
-        {
-            selectRelation = null;
-            ListRelations.Clear();
-        }
         public List<Relation> ListRelations { get; }
-     #region Списки приватные Словарей
-        private IEnumerable<Dic_DeviceModel>  deviceModels;
-        private IEnumerable<Dic_DeviceType>  deviceTypes;
-        private IEnumerable<Dic_DeviceGadget>  deviceGadgets;
-        private IEnumerable<Dic_DeviceLocation> deviceLocations;
-        private IEnumerable<Dic_DeviceSp_Si> deviceSp_Sis;
-    #endregion
+        
+
+        #region Команды добаление/изменение
         // команда добавления
         public RelayCommand AddCommand
         {
@@ -89,7 +87,7 @@ namespace Dictionary.WPF
                 return editCommand ??
                   (editCommand = new RelayCommand((o) =>
                   {
-                      ///MessageBox.Show(SelectedDic_Device.ToString());
+                     
                       if (SelectedDic_Device==null)
                       {
                           return;
@@ -103,11 +101,13 @@ namespace Dictionary.WPF
                       if (editAddViewWindows.GetWindow().ShowDialog() == true)
                       {
                           Dic_Device.Fill(newDic_Device);
-                          db.SaveChanges();   
+                          db.SaveChanges();
                       }
+
                   }));
             }
         }
+        #endregion
 
         #region Списки Словарей Геттеры и Сеттеры
         public IEnumerable<Dic_DeviceModel> DeviceModels
@@ -117,6 +117,7 @@ namespace Dictionary.WPF
             {
                 deviceModels = value;
                 OnPropertyChanged(nameof(DeviceModels));
+                OnPropertyChanged(nameof(DeviceTypes));
             }
         }
         public IEnumerable<Dic_DeviceType> DeviceTypes
@@ -177,18 +178,18 @@ namespace Dictionary.WPF
                                 new Func<object>(()=> new Dic_DeviceGadget())
                             ),
                 new Relation(
-                                "Модели устройств", 
-                                new ViewDictionary.ModelControl(), 
-                                new Func<object, IEditAddViewWindows>((W) =>  (new EditAdd.ModelWindows((Dic_DeviceModel)W, DeviceTypes))), 
-                                db.DeviceModels,
-                                new Func<object>(()=> new Dic_DeviceModel())
-                            ),
-                new Relation(
                                 "Типы устройств",
                                 new ViewDictionary.TypeControl(),
                                 new Func<object, IEditAddViewWindows>((W) => new EditAdd.TypeWindows((Dic_DeviceType)W, DeviceGadgets)),
                                 db.DeviceTypes,
                                 new Func<object>(()=> new Dic_DeviceType())
+                            ),
+                new Relation(
+                                "Модели устройств",
+                                new ViewDictionary.ModelControl(),
+                                new Func<object, IEditAddViewWindows>((W) =>  (new EditAdd.ModelWindows((Dic_DeviceModel)W, DeviceTypes))),
+                                db.DeviceModels,
+                                new Func<object>(()=> new Dic_DeviceModel())
                             ),
                 new Relation(
                                 "Местоположение",

@@ -20,15 +20,17 @@ namespace DataBase.BL
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Dic_DeviceGadget>()
+               .HasMany(e => e.DeviceTypes)
+               .WithRequired(e => e.DeviceGadget)
+               .WillCascadeOnDelete(false);
+
             modelBuilder.Entity<Dic_DeviceType>()
                 .HasMany(e => e.DeviceModels)
                 .WithRequired(e => e.DeviceType)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<Dic_DeviceGadget>()
-                .HasMany(e => e.DeviceTypes)
-                .WithRequired(e => e.DeviceGadget)
-                .WillCascadeOnDelete(false);
+           
         }
     }
 }
