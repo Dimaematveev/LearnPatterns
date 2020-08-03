@@ -18,8 +18,9 @@ namespace Dictionary.WPF
 
         private RelayCommand addCommand;
         private RelayCommand editCommand;
+        private RelayCommand deleteCommand;
         /// <summary> выбранное устройство</summary>
-        private object selectedDic_Device;
+        private BD_Default selectedDic_Device;
         /// <summary> выбранный словарь </summary>
         private Relation selectRelation;
         #endregion
@@ -31,7 +32,7 @@ namespace Dictionary.WPF
         private IEnumerable<Dic_DeviceSp_Si> deviceSp_Sis;
         #endregion
 
-        public object SelectedDic_Device
+        public BD_Default SelectedDic_Device
         {
             get { return selectedDic_Device; }
             set
@@ -76,7 +77,7 @@ namespace Dictionary.WPF
                   }));
             }
         }
-
+        //TODO: Если выбрали устройство и перешли на другой словарь, то крах
         /// <summary>
         /// Команда Изменения
         /// </summary>
@@ -93,17 +94,36 @@ namespace Dictionary.WPF
                           return;
                       }
 
-                      var Dic_Device = SelectedDic_Device as NotifyPropertyChanged_Default;
-                      var newDic_Device = Dic_Device.Copy() as NotifyPropertyChanged_Default;
+                      var newDic_Device = SelectedDic_Device.Copy();
 
                       IEditAddViewWindows editAddViewWindows = SelectRelation.FuncAddEditWindow(newDic_Device);
                       
                       if (editAddViewWindows.GetWindow().ShowDialog() == true)
                       {
-                          Dic_Device.Fill(newDic_Device);
+                          SelectedDic_Device.Fill(newDic_Device);
                           db.SaveChanges();
                       }
 
+                  }));
+            }
+        }
+        /// <summary>
+        /// Команда удаления
+        /// </summary>
+        public RelayCommand DeleteCommand
+        {
+            get
+            {
+                return deleteCommand ??
+                  (deleteCommand = new RelayCommand((o) =>
+                  {
+
+                      if (SelectedDic_Device == null)
+                      {
+                          return;
+                      }
+                      SelectedDic_Device.IsDelete = true;
+                      db.SaveChanges();
                   }));
             }
         }

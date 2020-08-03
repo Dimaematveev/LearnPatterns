@@ -7,7 +7,7 @@ namespace DataBase.BL
     using System.Data.Entity.Spatial;
 
     [Table("dic.Device_Model")]
-    public partial class Dic_DeviceModel : NotifyPropertyChanged_Default
+    public partial class Dic_DeviceModel : BD_Default
     {
         private int _ID;
         private string _Name;
@@ -41,7 +41,7 @@ namespace DataBase.BL
             }
         }
 
-        public bool IsDelete
+        public override bool IsDelete
         {
             get { return _IsDelete; }
             set
@@ -62,7 +62,7 @@ namespace DataBase.BL
         }
 
 
-        public override object Copy()
+        public override BD_Default Copy()
         {
             Dic_DeviceModel newDevice = null;
           
@@ -77,9 +77,9 @@ namespace DataBase.BL
             return newDevice;
         }
 
-        public override void Fill(object obj)
+        public override void Fill(BD_Default bd_Default)
         {
-            if (obj is Dic_DeviceModel device)
+            if (bd_Default is Dic_DeviceModel device)
             {
                 Name = device.Name;
                 DeviceTypeID = device.DeviceTypeID;
