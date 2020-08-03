@@ -47,12 +47,13 @@ namespace Dictionary.WPF
                 return addCommand ??
                   (addCommand = new RelayCommand((o) =>
                   {
-                      SelectRelation.AddEditWindow.DataContext = SelectRelation.NewObject;
-                      if (SelectRelation.AddEditWindow.ShowDialog() == true)
+                      object newObj = SelectRelation.FuncNewObject();
+                      IEditAddViewWindows editAddViewWindows = SelectRelation.FuncAddEditWindow(newObj);
+                      if (editAddViewWindows.GetWindow().ShowDialog() == true)
                       {
-                          var deviceModel = SelectRelation.AddEditWindow.DataContext;
+                          var device = editAddViewWindows.GetDic_Device();
 
-                          SelectRelation.TableDb.Add(deviceModel);
+                          SelectRelation.TableDb.Add(device);
                           db.SaveChanges();
                       }
                   }));
@@ -116,14 +117,48 @@ namespace Dictionary.WPF
             DeviceModels = GetBdToList(db.DeviceModels);
             DeviceSp_Sis = GetBdToList(db.DeviceSp_Si);
             DeviceLocations = GetBdToList(db.DeviceLocations);
+            #region Заполнение вывода словаря
             ListRelations = new List<Relation>
             {
-                new Relation("Название таблиц", new ViewDictionary.GadgetControl(), new EditAdd.GadgetWindows(null), db.DeviceGadgets, new Dic_DeviceGadget()),
-                new Relation("Модели устройств", new ViewDictionary.ModelControl(), new EditAdd.ModelWindows(null,DeviceTypes), db.DeviceModels, new Dic_DeviceModel()),
-                new Relation("Типы устройств", null, new EditAdd.TypeWindows(null,DeviceGadgets), db.DeviceTypes, new Dic_DeviceType()),
-                new Relation("Местоположение", null, new EditAdd.LocationWindows(null), db.DeviceLocations, new Dic_DeviceLocation()),
-                new Relation("СП и СИ", null, new EditAdd.Sp_SiWindows(null), db.DeviceSp_Si, new Dic_DeviceSp_Si())
+                new Relation(
+                                "Название таблиц", 
+                                new ViewDictionary.GadgetControl(),
+                                new Func<object, IEditAddViewWindows>((W) => (new EditAdd.GadgetWindows((Dic_DeviceGadget) W))), 
+                                db.DeviceGadgets, 
+                                new Func<object>(()=> new Dic_DeviceGadget())
+                            ),
+                new Relation(
+                                "Модели устройств", 
+                                new ViewDictionary.ModelControl(), 
+                                new Func<object, IEditAddViewWindows>((W) =>  (new EditAdd.ModelWindows((Dic_DeviceModel)W, DeviceTypes))), 
+                                db.DeviceModels,
+                                new Func<object>(()=> new Dic_DeviceModel())
+                            ),
+                new Relation(
+                                "Типы устройств",
+                                new ViewDictionary.TypeControl(),
+                                new Func<object, IEditAddViewWindows>((W) => new EditAdd.TypeWindows((Dic_DeviceType)W, DeviceGadgets)),
+                                db.DeviceTypes,
+                                new Func<object>(()=> new Dic_DeviceType())
+                            ),
+                new Relation(
+                                "Местоположение",
+                                new ViewDictionary.LocationControl(),
+                                new Func<object, IEditAddViewWindows>((W) => new EditAdd.LocationWindows((Dic_DeviceLocation)W)),
+                                db.DeviceLocations,
+                                new Func<object>(()=> new Dic_DeviceLocation())
+                            ),
+                new Relation(
+                                "СП и СИ",
+                                new ViewDictionary.Sp_SiControl(),
+                                new Func<object, IEditAddViewWindows>((W) => new EditAdd.Sp_SiWindows((Dic_DeviceSp_Si)W)),
+                                db.DeviceSp_Si,
+                                new Func<object>(()=> new Dic_DeviceSp_Si())
+                            ),
             };
+            
+            #endregion
+
         }
         /// <summary>
         /// Получить данные из БД в список.

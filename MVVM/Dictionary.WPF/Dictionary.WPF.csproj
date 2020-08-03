@@ -66,7 +66,7 @@
     <Compile Include="EditAdd\GadgetWindows.xaml.cs">
       <DependentUpon>GadgetWindows.xaml</DependentUpon>
     </Compile>
-    <Compile Include="EditAdd\IEditAddView.cs" />
+    <Compile Include="EditAdd\IEditAddViewWindows.cs" />
     <Compile Include="EditAdd\LocationWindows.xaml.cs">
       <DependentUpon>LocationWindows.xaml</DependentUpon>
     </Compile>
@@ -83,6 +83,16 @@
     <Compile Include="RelayCommand.cs" />
     <Compile Include="ViewDictionary\GadgetControl.xaml.cs">
       <DependentUpon>GadgetControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewDictionary\IViewControl.cs" />
+    <Compile Include="ViewDictionary\TypeControl.xaml.cs">
+      <DependentUpon>TypeControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewDictionary\Sp_SiControl.xaml.cs">
+      <DependentUpon>Sp_SiControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewDictionary\LocationControl.xaml.cs">
+      <DependentUpon>LocationControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewDictionary\ModelControl.xaml.cs">
       <DependentUpon>ModelControl.xaml</DependentUpon>
@@ -121,6 +131,18 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="ViewDictionary\GadgetControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ViewDictionary\TypeControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ViewDictionary\Sp_SiControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ViewDictionary\LocationControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

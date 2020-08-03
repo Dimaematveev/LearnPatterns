@@ -1,4 +1,7 @@
-﻿using System.Data.Entity;
+﻿using Dictionary.WPF.EditAdd;
+using System;
+using System.Collections;
+using System.Data.Entity;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -9,21 +12,20 @@ namespace Dictionary.WPF
     /// </summary>
     public class Relation
     {
-        
 
         public string Text { get; }
         public UserControl ViewControl { get; }
-        public Window AddEditWindow { get; }
+        public Func<object, IEditAddViewWindows> FuncAddEditWindow { get; }
         public DbSet TableDb { get; }
-        public object NewObject { get; }
+        public Func<object> FuncNewObject { get; }
 
-        public Relation(string text, UserControl viewControl, Window addEditWindow, DbSet tableDb, object newObject)
+        public Relation(string text, UserControl viewControl, Func<object, IEditAddViewWindows> funcAddEditWindow, DbSet tableDb, Func<object> funcNewObject)
         {
             Text = text;
             ViewControl = viewControl;
-            AddEditWindow = addEditWindow;
+            FuncAddEditWindow = funcAddEditWindow;
             TableDb = tableDb;
-            NewObject = newObject;
+            FuncNewObject = funcNewObject;
         }
     }
 }
