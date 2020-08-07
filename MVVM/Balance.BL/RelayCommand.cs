@@ -3,6 +3,9 @@ using System.Windows.Input;
 
 namespace Balance.BL
 {
+    /// <summary>
+    /// Класс для действий, Реализует ICommand.
+    /// </summary>
     public class RelayCommand : ICommand
     {
         private readonly Action<object> execute;

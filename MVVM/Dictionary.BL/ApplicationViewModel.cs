@@ -8,19 +8,12 @@ namespace Dictionary.BL
     {
         #region Все приватные поля
         public BalanceDictionary Db { get; }
-
         private ApplicationCommand applicationCommand;
-
         private ApplicationListDevice applicationListDevice;
-
-        /// <summary>
-        /// Показать удаленные
-        /// </summary>
+        /// <summary> Показать удаленные </summary>
         private bool? showIsDelete;
-        
         #endregion
-      
-
+        public List<Relation> ListRelations { get; private set; }
         public bool? ShowIsDelete
         {
             get { return showIsDelete; }
@@ -30,11 +23,6 @@ namespace Dictionary.BL
                 OnPropertyChanged(nameof(ShowIsDelete));
             }
         }
-    
-        public List<Relation> ListRelations { get; private set; }
-
-
-
         public ApplicationCommand ApplicationCommand
         {
             get { return applicationCommand; }
@@ -58,16 +46,11 @@ namespace Dictionary.BL
         public ApplicationViewModel()
         {
             Db = new BalanceDictionary();
-
             ApplicationCommand = new ApplicationCommand(Db);
-
             ApplicationListDevice = new ApplicationListDevice(Db);
-
             ShowIsDelete =false;
-            #region Заполнение вывода словаря
-            #endregion
-
         }
+
 
         public void SetListRelations(List<Relation> relations)
         {
@@ -78,6 +61,8 @@ namespace Dictionary.BL
             ListRelations = relations;
         }
        
+
+
        
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged(string prop)
