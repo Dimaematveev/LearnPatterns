@@ -12,6 +12,7 @@ namespace DataBase.BL
         abstract public BD_Default Copy();
         abstract public void Fill(BD_Default bd_Default);
         public BD_Default() { }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         public void OnPropertyChanged(string prop)

@@ -1,12 +1,9 @@
-﻿using Dictionary.WPF.EditAdd;
-using Dictionary.WPF.ViewDictionary;
+﻿using Dictionary.BL.EditAdd;
 using System;
-using System.Collections;
 using System.Data.Entity;
-using System.Windows;
 using System.Windows.Controls;
 
-namespace Dictionary.WPF
+namespace Dictionary.BL
 {
     /// <summary>
     /// Связь названия словаря с Представлением, с Изменением/Добавлением, с Базой

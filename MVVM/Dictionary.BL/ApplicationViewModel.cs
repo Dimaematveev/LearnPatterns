@@ -1,20 +1,17 @@
-﻿using DataBase.BL;
-using Dictionary.WPF.EditAdd;
-using Dictionary.WPF.ViewDictionary;
+﻿using Balance.BL;
+using DataBase.BL;
+using Dictionary.BL.EditAdd;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data.Entity;
-using System.Linq;
-using System.Windows;
-using System.Windows.Controls;
 
-namespace Dictionary.WPF
+namespace Dictionary.BL
 {
     public class ApplicationViewModel : INotifyPropertyChanged
     {
         #region Все приватные поля
-        private readonly BalanceDictionary db;
+        public BalanceDictionary Db { get; }
 
         private RelayCommand addCommand;
         private RelayCommand editCommand;
@@ -67,7 +64,7 @@ namespace Dictionary.WPF
             }
         }
 
-        public List<Relation> ListRelations { get; }
+        public List<Relation> ListRelations { get; private set; }
         
 
         #region Команды добавление/изменение/удаление
@@ -86,7 +83,7 @@ namespace Dictionary.WPF
                           var device = editAddViewWindows.GetDic_Device();
 
                           SelectRelation.TableDb.Add(device);
-                          db.SaveChanges();
+                          Db.SaveChanges();
                       }
                   }));
             }
@@ -112,10 +109,10 @@ namespace Dictionary.WPF
 
                       IEditAddViewWindows editAddViewWindows = SelectRelation.FuncAddEditWindow(newDic_Device);
                       
-                      if (editAddViewWindows.GetWindow().ShowDialog() == true)
+                      if (editAddViewWindows.GetWindow().ShowDialog()== true)
                       {
                           SelectedDic_Device.Fill(newDic_Device);
-                          db.SaveChanges();
+                          Db.SaveChanges();
                       }
 
                   }));
@@ -137,7 +134,7 @@ namespace Dictionary.WPF
                           return;
                       }
                       SelectedDic_Device.IsDelete = true;
-                      db.SaveChanges();
+                      Db.SaveChanges();
                   }));
             }
         }
@@ -194,55 +191,25 @@ namespace Dictionary.WPF
 
         public ApplicationViewModel()
         {
-            db = new BalanceDictionary();
-            DeviceGadgets = GetBdToList(db.DeviceGadgets);
-            DeviceTypes = GetBdToList(db.DeviceTypes);
-            DeviceModels = GetBdToList(db.DeviceModels);
-            DeviceSp_Sis = GetBdToList(db.DeviceSp_Si);
-            DeviceLocations = GetBdToList(db.DeviceLocations);
+            Db = new BalanceDictionary();
+            DeviceGadgets = GetBdToList(Db.DeviceGadgets);
+            DeviceTypes = GetBdToList(Db.DeviceTypes);
+            DeviceModels = GetBdToList(Db.DeviceModels);
+            DeviceSp_Sis = GetBdToList(Db.DeviceSp_Si);
+            DeviceLocations = GetBdToList(Db.DeviceLocations);
             ShowIsDelete=false;
             #region Заполнение вывода словаря
-            ListRelations = new List<Relation>
-            {
-                new Relation(
-                                "Название таблиц", 
-                                new ViewDictionary.GadgetControl(),
-                                new Func<object, IEditAddViewWindows>((W) => (new EditAdd.GadgetWindows((Dic_DeviceGadget) W))), 
-                                db.DeviceGadgets, 
-                                new Func<object>(()=> new Dic_DeviceGadget())
-                            ),
-                new Relation(
-                                "Типы устройств",
-                                new ViewDictionary.TypeControl(),
-                                new Func<object, IEditAddViewWindows>((W) => new EditAdd.TypeWindows((Dic_DeviceType)W, DeviceGadgets)),
-                                db.DeviceTypes,
-                                new Func<object>(()=> new Dic_DeviceType())
-                            ),
-                new Relation(
-                                "Модели устройств",
-                                new ViewDictionary.ModelControl(),
-                                new Func<object, IEditAddViewWindows>((W) =>  (new EditAdd.ModelWindows((Dic_DeviceModel)W, DeviceTypes))),
-                                db.DeviceModels,
-                                new Func<object>(()=> new Dic_DeviceModel())
-                            ),
-                new Relation(
-                                "Местоположение",
-                                new ViewDictionary.LocationControl(),
-                                new Func<object, IEditAddViewWindows>((W) => new EditAdd.LocationWindows((Dic_DeviceLocation)W)),
-                                db.DeviceLocations,
-                                new Func<object>(()=> new Dic_DeviceLocation())
-                            ),
-                new Relation(
-                                "СП и СИ",
-                                new ViewDictionary.Sp_SiControl(),
-                                new Func<object, IEditAddViewWindows>((W) => new EditAdd.Sp_SiWindows((Dic_DeviceSp_Si)W)),
-                                db.DeviceSp_Si,
-                                new Func<object>(()=> new Dic_DeviceSp_Si())
-                            ),
-            };
-            
             #endregion
 
+        }
+
+        public void SetListRelations(List<Relation> relations)
+        {
+            if (ListRelations != null && ListRelations.Count > 0) 
+            {
+                return;
+            }
+            ListRelations = relations;
         }
         /// <summary>
         /// Получить данные из БД в список.

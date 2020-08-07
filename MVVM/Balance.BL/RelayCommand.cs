@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace Dictionary.WPF
+namespace Balance.BL
 {
     public class RelayCommand : ICommand
     {

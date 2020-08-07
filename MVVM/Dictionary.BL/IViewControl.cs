@@ -5,7 +5,7 @@ using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace Dictionary.WPF.ViewDictionary
+namespace Dictionary.BL.ViewDictionary
 {
     public interface IViewControl
     {

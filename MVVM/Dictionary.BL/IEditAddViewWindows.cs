@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Windows;
 
-namespace Dictionary.WPF.EditAdd
+namespace Dictionary.BL.EditAdd
 {
     public interface IEditAddViewWindows
     {
