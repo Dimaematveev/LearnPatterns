@@ -90,9 +90,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MVVM_Habr.BL\MVVM_Habr.BL.csproj">
+    <ProjectReference Include="..\MVVM_Habr.BL\MVVM_Habr.BL_v1.csproj">
       <Project>{45804bbb-d3d5-4cbb-aa67-7f07c790bc4f}</Project>
-      <Name>MVVM_Habr.BL</Name>
+      <Name>MVVM_Habr.BL_v1</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

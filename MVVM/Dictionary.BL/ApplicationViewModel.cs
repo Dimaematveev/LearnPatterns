@@ -13,13 +13,10 @@ namespace Dictionary.BL
         #region Все приватные поля
         public BalanceDictionary Db { get; }
 
-        private RelayCommand addCommand;
-        private RelayCommand editCommand;
-        private RelayCommand deleteCommand;
-        /// <summary> выбранное устройство</summary>
-        private BD_Default selectedDic_Device;
-        /// <summary> выбранный словарь </summary>
-        private Relation selectRelation;
+        private ApplicationCommand applicationCommand;
+
+
+
         /// <summary>
         /// Показать удаленные
         /// </summary>
@@ -43,103 +40,24 @@ namespace Dictionary.BL
                 OnPropertyChanged(nameof(ShowIsDelete));
             }
         }
-        public BD_Default SelectedDic_Device
-        {
-            get { return selectedDic_Device; }
-            set
-            {
-                selectedDic_Device = value;
-                OnPropertyChanged(nameof(SelectedDic_Device));
-            }
-        }
+    
 
        
-        public Relation SelectRelation
-        {
-            get { return selectRelation; }
-            set
-            {
-                selectRelation = value;
-                OnPropertyChanged(nameof(SelectRelation));
-            }
-        }
+      
 
         public List<Relation> ListRelations { get; private set; }
-        
 
-        #region Команды добавление/изменение/удаление
-        // команда добавления
-        public RelayCommand AddCommand
+
+
+        public ApplicationCommand ApplicationCommand
         {
-            get
+            get { return applicationCommand; }
+            set
             {
-                return addCommand ??
-                  (addCommand = new RelayCommand((o) =>
-                  {
-                      object newObj = SelectRelation.FuncNewObject();
-                      IEditAddViewWindows editAddViewWindows = SelectRelation.FuncAddEditWindow(newObj);
-                      if (editAddViewWindows.GetWindow().ShowDialog() == true)
-                      {
-                          var device = editAddViewWindows.GetDic_Device();
-
-                          SelectRelation.TableDb.Add(device);
-                          Db.SaveChanges();
-                      }
-                  }));
+                applicationCommand = value;
+                OnPropertyChanged(nameof(ApplicationCommand));
             }
         }
-        //TODO: Если выбрали устройство и перешли на другой словарь, то крах
-        /// <summary>
-        /// Команда Изменения
-        /// </summary>
-        public RelayCommand EditCommand
-        {
-            get
-            {
-                return editCommand ??
-                  (editCommand = new RelayCommand((o) =>
-                  {
-                     
-                      if (SelectedDic_Device==null)
-                      {
-                          return;
-                      }
-
-                      var newDic_Device = SelectedDic_Device.Copy();
-
-                      IEditAddViewWindows editAddViewWindows = SelectRelation.FuncAddEditWindow(newDic_Device);
-                      
-                      if (editAddViewWindows.GetWindow().ShowDialog()== true)
-                      {
-                          SelectedDic_Device.Fill(newDic_Device);
-                          Db.SaveChanges();
-                      }
-
-                  }));
-            }
-        }
-        /// <summary>
-        /// Команда удаления
-        /// </summary>
-        public RelayCommand DeleteCommand
-        {
-            get
-            {
-                return deleteCommand ??
-                  (deleteCommand = new RelayCommand((o) =>
-                  {
-
-                      if (SelectedDic_Device == null)
-                      {
-                          return;
-                      }
-                      SelectedDic_Device.IsDelete = true;
-                      Db.SaveChanges();
-                  }));
-            }
-        }
-        #endregion
-
         #region Списки Словарей Геттеры и Сеттеры
         public IEnumerable<Dic_DeviceModel> DeviceModels
         {
@@ -192,6 +110,9 @@ namespace Dictionary.BL
         public ApplicationViewModel()
         {
             Db = new BalanceDictionary();
+
+            applicationCommand = new ApplicationCommand(Db);
+
             DeviceGadgets = GetBdToList(Db.DeviceGadgets);
             DeviceTypes = GetBdToList(Db.DeviceTypes);
             DeviceModels = GetBdToList(Db.DeviceModels);

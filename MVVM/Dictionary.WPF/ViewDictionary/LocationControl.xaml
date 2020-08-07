@@ -23,7 +23,7 @@
     <Grid >
         <CheckBox x:Name="showIsDelete" Content="Показать удаленные" Margin="5" IsThreeState="True"  IsChecked="{Binding ShowIsDelete}" Visibility="Collapsed" />
 
-        <ListBox Grid.Column="1" ItemsSource="{Binding DeviceLocations}"  SelectedValue="{Binding SelectedDic_Device}" Visibility="Visible"
+        <ListBox Grid.Column="1" ItemsSource="{Binding DeviceLocations}"  SelectedValue="{Binding ApplicationCommand.SelectedDic_Device}" Visibility="Visible"
                  ItemTemplate="{StaticResource VisualProperty}" ItemContainerStyle="{StaticResource CollapsedDeleteElement}"/>
     </Grid>
 </UserControl>
