@@ -6,22 +6,31 @@
              xmlns:local="clr-namespace:Dictionary.WPF.ViewDictionary"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="CollapseElement.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <DataTemplate x:Key="VisualProperty">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="RegNum: " FontSize="13" />
+                    <TextBlock Text="{Binding RegisterNumber}" FontSize="13" />
+                    <TextBlock Text=" Deal: " FontSize="13" />
+                    <TextBlock Text="{Binding Deal}" FontSize="13" />
+                    <TextBlock Text=" Page: " FontSize="13" />
+                    <TextBlock Text="{Binding Page}" FontSize="13" />
+                    <TextBlock Text=" СП: " FontSize="13" />
+                    <TextBlock Text="{Binding IsSp}" FontSize="13" />
+                </StackPanel>
+            </DataTemplate>
+
+        </ResourceDictionary>
+    </UserControl.Resources>
     <Grid >
-        <ListBox Grid.Column="1" ItemsSource="{Binding DeviceSp_Sis}"  SelectedValue="{Binding SelectedDic_Device}" Visibility="Visible">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="RegNum: " FontSize="13" />
-                        <TextBlock Text="{Binding RegisterNumber}" FontSize="13" />
-                        <TextBlock Text=" Deal: " FontSize="13" />
-                        <TextBlock Text="{Binding Deal}" FontSize="13" />
-                        <TextBlock Text=" Page: " FontSize="13" />
-                        <TextBlock Text="{Binding Page}" FontSize="13" />
-                        <TextBlock Text=" СП: " FontSize="13" />
-                        <TextBlock Text="{Binding IsSp}" FontSize="13" />
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+        <CheckBox x:Name="showIsDelete" Content="Показать удаленные" Margin="5" IsThreeState="True"  IsChecked="{Binding ShowIsDelete}" Visibility="Collapsed" />
+
+        <ListBox Grid.Column="1" ItemsSource="{Binding DeviceSp_Sis}"  SelectedValue="{Binding SelectedDic_Device}" Visibility="Visible"
+                 ItemTemplate="{StaticResource VisualProperty}" ItemContainerStyle="{StaticResource CollapsedDeleteElement}"/>
     </Grid>
 </UserControl>

@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Data.Entity;
 using System.Runtime.CompilerServices;
+using System.Windows;
 
 namespace SQLiteApp
 {
@@ -93,11 +94,19 @@ namespace SQLiteApp
                 return deleteCommand ??
                   (deleteCommand = new RelayCommand((selectedItem) =>
                   {
-                      if (selectedItem == null) return;
-                      // получаем выделенный объект
-                      Phone phone = selectedItem as Phone;
-                      db.Phones.Remove(phone);
-                      db.SaveChanges();
+                      if (selectedItem==null)
+                      {
+                          MessageBox.Show("NULL");
+                      }
+                      else
+                      {
+                          MessageBox.Show(selectedItem.ToString());
+                      }
+                      //if (selectedItem == null) return;
+                      //// получаем выделенный объект
+                      //Phone phone = selectedItem as Phone;
+                      //db.Phones.Remove(phone);
+                      //db.SaveChanges();
                   }));
             }
         }

@@ -6,8 +6,12 @@
         xmlns:local="clr-namespace:Dictionary.WPF"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+    <Window.Resources>
+        <ResourceDictionary Source="ViewDictionary/CollapseElement.xaml"/>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition  Height="30"/>
             <RowDefinition />
             <RowDefinition Height="50" />
         </Grid.RowDefinitions>
@@ -15,17 +19,18 @@
             <ColumnDefinition Width="auto" MinWidth="90"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <ListView ItemsSource="{Binding ListRelations}" SelectedValue="{Binding SelectRelation}"  DisplayMemberPath="Text" Grid.Column="0" Grid.Row="0" Margin="10" />
-        <Grid x:Name="MyUI" Grid.Column="1" Margin="10">
+        <StackPanel Grid.Row="0" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right">
+            <CheckBox Content="Показать удаленные" Margin="5" IsThreeState="True"  IsChecked="{Binding ShowIsDelete}" />
+        </StackPanel>
+        <ListView ItemsSource="{Binding ListRelations}" SelectedValue="{Binding SelectRelation}"  DisplayMemberPath="Text" Grid.Column="0" Grid.Row="1" Margin="10" />
+        <Grid x:Name="MyUI" Grid.Row="1" Grid.Column="1" Margin="10">
             <ContentControl Content="{Binding SelectRelation.ViewControl}"/>
         </Grid>
-
-        <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center">
+        
+        <StackPanel Grid.Row="2" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center">
             <Button x:Name="Add" Content="Добавить" Margin="10" Command="{Binding AddCommand}"  />
-            <Button Content="Изменить" Margin="10" Command="{Binding EditCommand}" 
-                CommandParameter="{Binding ElementName=modelsList, Path=SelectedItem}"  />
-            <Button Content="Удалить" Margin="10,10,10,0" Command="{Binding DeleteCommand}" 
-                CommandParameter="{Binding ElementName=phonesList, Path=SelectedItem}" Height="30" VerticalAlignment="Top" Click="Button_Click"  />
+            <Button Content="Изменить" Margin="10" Command="{Binding EditCommand}"/>
+            <Button Content="Удалить" Margin="10,10,10,0" Command="{Binding DeleteCommand}" Height="30" VerticalAlignment="Top"/>
         </StackPanel>
     </Grid>
 </Window>

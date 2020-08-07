@@ -23,6 +23,11 @@ namespace Dictionary.WPF
         private BD_Default selectedDic_Device;
         /// <summary> выбранный словарь </summary>
         private Relation selectRelation;
+        /// <summary>
+        /// Показать удаленные
+        /// </summary>
+        private bool? showIsDelete;
+        
         #endregion
         #region Списки приватные Словарей
         private IEnumerable<Dic_DeviceModel> deviceModels;
@@ -32,6 +37,15 @@ namespace Dictionary.WPF
         private IEnumerable<Dic_DeviceSp_Si> deviceSp_Sis;
         #endregion
 
+        public bool? ShowIsDelete
+        {
+            get { return showIsDelete; }
+            set 
+            {
+                showIsDelete = value;
+                OnPropertyChanged(nameof(ShowIsDelete));
+            }
+        }
         public BD_Default SelectedDic_Device
         {
             get { return selectedDic_Device; }
@@ -56,7 +70,7 @@ namespace Dictionary.WPF
         public List<Relation> ListRelations { get; }
         
 
-        #region Команды добаление/изменение
+        #region Команды добавление/изменение/удаление
         // команда добавления
         public RelayCommand AddCommand
         {
@@ -137,7 +151,6 @@ namespace Dictionary.WPF
             {
                 deviceModels = value;
                 OnPropertyChanged(nameof(DeviceModels));
-                OnPropertyChanged(nameof(DeviceTypes));
             }
         }
         public IEnumerable<Dic_DeviceType> DeviceTypes
@@ -187,6 +200,7 @@ namespace Dictionary.WPF
             DeviceModels = GetBdToList(db.DeviceModels);
             DeviceSp_Sis = GetBdToList(db.DeviceSp_Si);
             DeviceLocations = GetBdToList(db.DeviceLocations);
+            ShowIsDelete=false;
             #region Заполнение вывода словаря
             ListRelations = new List<Relation>
             {

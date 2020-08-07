@@ -9,7 +9,6 @@ namespace Dictionary.WPF.ViewDictionary
     /// </summary>
     public partial class GadgetControl : UserControl
     {
-
         public GadgetControl()
         {
             InitializeComponent();
