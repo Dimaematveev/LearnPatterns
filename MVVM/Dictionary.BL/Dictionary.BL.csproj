@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationCommand.cs" />
+    <Compile Include="ApplicationListDevice.cs" />
     <Compile Include="ApplicationViewModel.cs" />
     <Compile Include="IEditAddViewWindows.cs" />
     <Compile Include="IViewControl.cs" />

@@ -1,10 +1,7 @@
 namespace DataBase.BL
 {
-    using System;
-    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
 
     [Table("dic.Device_Sp_Si")]
     public partial class Dic_DeviceSp_Si : BD_Default

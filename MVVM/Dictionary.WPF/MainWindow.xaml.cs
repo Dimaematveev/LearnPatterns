@@ -1,7 +1,6 @@
 ﻿using DataBase.BL;
 using Dictionary.BL;
 using Dictionary.BL.EditAdd;
-using Dictionary.WPF.ViewDictionary;
 using System;
 using System.Collections.Generic;
 using System.Windows;
@@ -29,14 +28,14 @@ namespace Dictionary.WPF
                 new Relation(
                                 "Типы устройств",
                                 new ViewDictionary.TypeControl(),
-                                new Func<object, IEditAddViewWindows>((W) => new EditAdd.TypeWindows((Dic_DeviceType)W, applicationViewModel.DeviceGadgets)),
+                                new Func<object, IEditAddViewWindows>((W) => new EditAdd.TypeWindows((Dic_DeviceType)W, applicationViewModel.ApplicationListDevice.DeviceGadgets)),
                                 applicationViewModel.Db.DeviceTypes,
                                 new Func<object>(()=> new Dic_DeviceType())
                             ),
                 new Relation(
                                 "Модели устройств",
                                 new ViewDictionary.ModelControl(),
-                                new Func<object, IEditAddViewWindows>((W) =>  (new EditAdd.ModelWindows((Dic_DeviceModel)W, applicationViewModel.DeviceTypes))),
+                                new Func<object, IEditAddViewWindows>((W) =>  (new EditAdd.ModelWindows((Dic_DeviceModel)W, applicationViewModel.ApplicationListDevice.DeviceTypes))),
                                 applicationViewModel.Db.DeviceModels,
                                 new Func<object>(()=> new Dic_DeviceModel())
                             ),

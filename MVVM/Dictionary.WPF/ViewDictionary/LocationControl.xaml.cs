@@ -1,6 +1,4 @@
-﻿using DataBase.BL;
-using System.Collections.Generic;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 
 namespace Dictionary.WPF.ViewDictionary
 {
