@@ -5,17 +5,26 @@ using System.Data.Entity;
 
 namespace Dictionary.BL
 {
-    public class ApplicationListDevice : INotifyPropertyChanged
+    /// <summary> Список всех словарей </summary>
+    public class ApplicationListDictionary : INotifyPropertyChanged
     {
+        /// <summary> Приватная база данных </summary>
         private readonly BalanceDictionary Db;
         #region Списки приватные Словарей
+        /// <summary> Приватный словарь Моделей устройств </summary>
         private IEnumerable<Dic_DeviceModel> deviceModels;
+        /// <summary> Приватный словарь Типов устройств </summary>
         private IEnumerable<Dic_DeviceType> deviceTypes;
+        /// <summary> Приватный словарь Названий таблиц </summary>
         private IEnumerable<Dic_DeviceGadget> deviceGadgets;
+        /// <summary> Приватный словарь Местоположений </summary>
         private IEnumerable<Dic_DeviceLocation> deviceLocations;
+        /// <summary> Приватный словарь СП и СИ </summary>
         private IEnumerable<Dic_DeviceSp_Si> deviceSp_Sis;
         #endregion
-        public ApplicationListDevice(BalanceDictionary db)
+
+
+        public ApplicationListDictionary(BalanceDictionary db)
         {
             Db = db;
             DeviceGadgets = GetBdToList(Db.DeviceGadgets);
@@ -24,9 +33,10 @@ namespace Dictionary.BL
             DeviceSp_Sis = GetBdToList(Db.DeviceSp_Si);
             DeviceLocations = GetBdToList(Db.DeviceLocations);
         }
-        
+
 
         #region Списки Словарей Геттеры и Сеттеры
+        /// <summary> Словарь Моделей устройств </summary>
         public IEnumerable<Dic_DeviceModel> DeviceModels
         {
             get { return deviceModels; }
@@ -36,6 +46,7 @@ namespace Dictionary.BL
                 OnPropertyChanged(nameof(DeviceModels));
             }
         }
+        /// <summary> Словарь Типов устройств </summary>
         public IEnumerable<Dic_DeviceType> DeviceTypes
         {
             get { return deviceTypes; }
@@ -45,6 +56,7 @@ namespace Dictionary.BL
                 OnPropertyChanged(nameof(DeviceTypes));
             }
         }
+        /// <summary> Словарь Названий таблиц </summary>
         public IEnumerable<Dic_DeviceGadget> DeviceGadgets
         {
             get { return deviceGadgets; }
@@ -54,6 +66,7 @@ namespace Dictionary.BL
                 OnPropertyChanged(nameof(DeviceGadgets));
             }
         }
+        /// <summary> Словарь Местоположений </summary>
         public IEnumerable<Dic_DeviceLocation> DeviceLocations
         {
             get { return deviceLocations; }
@@ -63,6 +76,7 @@ namespace Dictionary.BL
                 OnPropertyChanged(nameof(DeviceLocations));
             }
         }
+        /// <summary> Словарь СП и СИ </summary>
         public IEnumerable<Dic_DeviceSp_Si> DeviceSp_Sis
         {
             get { return deviceSp_Sis; }
@@ -86,6 +100,9 @@ namespace Dictionary.BL
             return dbTable.Local.ToBindingList();
         }
 
+
+        //TODO: надо нормально расписать что делают они
+        /// <summary> Событие изменения </summary>
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged(string prop)
         {

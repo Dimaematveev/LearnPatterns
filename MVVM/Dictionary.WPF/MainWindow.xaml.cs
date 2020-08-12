@@ -28,14 +28,14 @@ namespace Dictionary.WPF
                 new Relation(
                                 "Типы устройств",
                                 new ViewDictionary.TypeControl(),
-                                new Func<object, IEditAddViewWindows>((W) => new EditAdd.TypeWindows((Dic_DeviceType)W, applicationViewModel.ApplicationListDevice.DeviceGadgets)),
+                                new Func<object, IEditAddViewWindows>((W) => new EditAdd.TypeWindows((Dic_DeviceType)W, applicationViewModel.ApplicationListDictionary.DeviceGadgets)),
                                 applicationViewModel.Db.DeviceTypes,
                                 new Func<object>(()=> new Dic_DeviceType())
                             ),
                 new Relation(
                                 "Модели устройств",
                                 new ViewDictionary.ModelControl(),
-                                new Func<object, IEditAddViewWindows>((W) =>  (new EditAdd.ModelWindows((Dic_DeviceModel)W, applicationViewModel.ApplicationListDevice.DeviceTypes))),
+                                new Func<object, IEditAddViewWindows>((W) =>  (new EditAdd.ModelWindows((Dic_DeviceModel)W, applicationViewModel.ApplicationListDictionary.DeviceTypes))),
                                 applicationViewModel.Db.DeviceModels,
                                 new Func<object>(()=> new Dic_DeviceModel())
                             ),

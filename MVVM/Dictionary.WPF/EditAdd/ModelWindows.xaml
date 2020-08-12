@@ -18,7 +18,7 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Label Content="_Тип устройства" Grid.Column="0"/>
-                <ComboBox x:Name="TypeCombobox" SelectedValue="{Binding ApplicationListDevice.DeviceTypeID}" DisplayMemberPath="Name" SelectedValuePath="ID" Grid.Column="1"/>
+                <ComboBox x:Name="TypeCombobox" SelectedValue="{Binding ApplicationListDictionary.DeviceTypeID}" DisplayMemberPath="Name" SelectedValuePath="ID" Grid.Column="1"/>
             </Grid>
             <Grid>
                 <Grid.ColumnDefinitions>
