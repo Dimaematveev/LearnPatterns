@@ -6,7 +6,7 @@
             <!-- Скрывает Элементы которые удалены -->
             <MultiDataTrigger>
                 <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding ElementName=showIsDelete, Path=IsChecked}" Value="false"/>
+                    <Condition Binding="{Binding DataContext.ShowIsDelete, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}" Value="false"/>
                     <Condition Binding="{Binding IsDelete}" Value="true"/>
                 </MultiDataTrigger.Conditions>
                 <MultiDataTrigger.Setters>
@@ -16,7 +16,7 @@
             <!-- Скрывает Элементы которы не удалены -->
             <MultiDataTrigger>
                 <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding ElementName=showIsDelete, Path=IsChecked}" Value="true"/>
+                    <Condition Binding="{Binding DataContext.ShowIsDelete, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}" Value="true"/>
                     <Condition Binding="{Binding IsDelete}" Value="false"/>
                 </MultiDataTrigger.Conditions>
                 <MultiDataTrigger.Setters>
