@@ -8,7 +8,13 @@ namespace Balance.BL
     /// </summary>
     public class RelayCommand : ICommand
     {
+        /// <summary>
+        /// Выполняемое действие
+        /// </summary>
         private readonly Action<object> execute;
+        /// <summary>
+        /// Показывает может ли выполнится действие
+        /// </summary>
         private readonly Func<object, bool> canExecute;
 
         public event EventHandler CanExecuteChanged

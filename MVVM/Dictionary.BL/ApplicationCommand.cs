@@ -2,6 +2,7 @@
 using DataBase.BL;
 using Dictionary.BL.EditAdd;
 using System.ComponentModel;
+using System.Windows;
 
 namespace Dictionary.BL
 {
@@ -50,6 +51,7 @@ namespace Dictionary.BL
             set
             {
                 selectRelation = value;
+                selectedDic_Device = null;
                 OnPropertyChanged(nameof(SelectRelation));
             }
         }
@@ -84,7 +86,7 @@ namespace Dictionary.BL
                 return editCommand ??
                   (editCommand = new RelayCommand((o) =>
                   {
-
+                     
                       if (SelectedDic_Device == null)
                       {
                           return;

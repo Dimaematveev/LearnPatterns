@@ -29,7 +29,7 @@
         
         <StackPanel Grid.Row="2" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center">
             <Button x:Name="Add" Content="Добавить" Margin="10" Command="{Binding ApplicationCommand.AddCommand}"  />
-            <Button Content="Изменить" Margin="10" Command="{Binding ApplicationCommand.EditCommand}"/>
+            <Button Content="Изменить" Margin="10" Command="{Binding ApplicationCommand.EditCommand}" CommandParameter="{Binding ApplicationCommand.SelectedDic_Device}"/>
             <Button Content="Удалить" Margin="10,10,10,0" Command="{Binding ApplicationCommand.DeleteCommand}" Height="30" VerticalAlignment="Top"/>
         </StackPanel>
     </Grid>
