@@ -10,7 +10,7 @@
         /// Пустой конструктор. По умолчанию передает "name=BalanceDictionary"
         /// </summary>
         public BalanceDictionary()
-            : base("name=BalanceDictionary")
+            : base("name=BalanceDictionaryWork")
         {
         }
 
