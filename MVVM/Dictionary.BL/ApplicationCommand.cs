@@ -63,18 +63,31 @@ namespace Dictionary.BL
             get
             {
                 return addCommand ??
-                  (addCommand = new RelayCommand((o) =>
-                  {
-                      object newObj = SelectRelation.FuncNewObject();
-                      IEditAddViewWindows editAddViewWindows = SelectRelation.FuncAddEditWindow(newObj);
-                      if (editAddViewWindows.GetWindow().ShowDialog() == true)
+                  (addCommand = new RelayCommand(
+                      (execute) =>
                       {
-                          var device = editAddViewWindows.GetDic_Device();
+                          object newObj = SelectRelation.FuncNewObject();
+                          IEditAddViewWindows editAddViewWindows = SelectRelation.FuncAddEditWindow(newObj);
+                          if (editAddViewWindows.GetWindow().ShowDialog() == true)
+                          {
+                              var device = editAddViewWindows.GetDic_Device();
 
-                          SelectRelation.TableDb.Add(device);
-                          Db.SaveChanges();
+                              SelectRelation.TableDb.Add(device);
+                              Db.SaveChanges();
+                          }
+                      },
+                      (isCanExecute) =>
+                      {
+                          if (selectRelation == null)
+                          {
+                              return false;
+                          }
+                          else
+                          {
+                              return true;
+                          }
                       }
-                  }));
+                  ));
             }
         }
         //TODO: Если выбрали устройство и перешли на другой словарь, то крах
@@ -84,25 +97,38 @@ namespace Dictionary.BL
             get
             {
                 return editCommand ??
-                  (editCommand = new RelayCommand((o) =>
-                  {
+                  (editCommand = new RelayCommand(
+                      (execute) =>
+                      {
                      
-                      if (SelectedDic_Device == null)
+                          if (SelectedDic_Device == null)
+                          {
+                              return;
+                          }
+
+                          var newDic_Device = SelectedDic_Device.Copy();
+
+                          IEditAddViewWindows editAddViewWindows = SelectRelation.FuncAddEditWindow(newDic_Device);
+
+                          if (editAddViewWindows.GetWindow().ShowDialog() == true)
+                          {
+                              SelectedDic_Device.Fill(newDic_Device);
+                              Db.SaveChanges();
+                          }
+
+                      },
+                      (isCanExecute) =>
                       {
-                          return;
+                          if (selectRelation == null)
+                          {
+                              return false;
+                          }
+                          else
+                          {
+                              return true;
+                          }
                       }
-
-                      var newDic_Device = SelectedDic_Device.Copy();
-
-                      IEditAddViewWindows editAddViewWindows = SelectRelation.FuncAddEditWindow(newDic_Device);
-
-                      if (editAddViewWindows.GetWindow().ShowDialog() == true)
-                      {
-                          SelectedDic_Device.Fill(newDic_Device);
-                          Db.SaveChanges();
-                      }
-
-                  }));
+                    ));
             }
         }
         /// <summary> Команда удаления </summary>
@@ -111,16 +137,25 @@ namespace Dictionary.BL
             get
             {
                 return deleteCommand ??
-                  (deleteCommand = new RelayCommand((o) =>
-                  {
-
-                      if (SelectedDic_Device == null)
-                      {
-                          return;
-                      }
-                      SelectedDic_Device.IsDelete = true;
-                      Db.SaveChanges();
-                  }));
+                  (deleteCommand = new RelayCommand(
+                    (execute) =>
+                    {
+                        if (SelectedDic_Device == null)
+                        {
+                            return;
+                        }
+                        SelectedDic_Device.IsDelete = true;
+                        Db.SaveChanges();
+                    }, 
+                    (isCanExecute) => 
+                    {
+                        if (SelectedDic_Device==null)
+                        {
+                            return false;
+                        }
+                        return !SelectedDic_Device.IsDelete;
+                    }
+                 ));
             }
         }
         #endregion

@@ -8,9 +8,7 @@ namespace Dictionary.BL.ViewDictionary
     /// </summary>
     public interface IViewControl
     {
-        /// <summary>
-        /// 
-        /// </summary>
+        /// <summary>  </summary>
         /// <returns></returns>
         UserControl GetEditAddUserControl();
     }
